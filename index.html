@@ -129,7 +129,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 3rem 2.2rem;
+      padding: 2.8rem 2.2rem;
       text-align: center;
 
       /* Soft Depth-Blur Focus Transitions */
@@ -164,9 +164,24 @@
       border: 1px solid rgba(168, 132, 52, 0.35);
     }
 
+    /* ==========================================
+       3. ROYAL JHAROKHA CREST STYLING
+       ========================================== */
+    .jharokha-crest-container {
+      width: 110px;
+      height: 125px;
+      margin-bottom: 5px;
+      filter: drop-shadow(0px 2px 4px rgba(168, 132, 52, 0.25));
+    }
+
+    .jharokha-svg {
+      width: 100%;
+      height: 100%;
+    }
+
     .crest-symbol {
       font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       letter-spacing: 4px;
       color: var(--gold-antique);
       margin-bottom: 5px;
@@ -204,7 +219,7 @@
       border-top: 1px solid var(--gold-antique);
       border-bottom: 1px solid var(--gold-antique);
       padding: 8px 24px;
-      margin: 15px 0;
+      margin: 12px 0;
       text-transform: uppercase;
     }
 
@@ -225,7 +240,7 @@
     }
 
     /* ==========================================
-       3. ITINERARY SPINE & MOVING PEARL
+       4. ITINERARY SPINE & MOVING PEARL
        ========================================== */
     .itinerary-track {
       position: relative;
@@ -402,10 +417,44 @@
     <!-- CARD 1: HERO -->
     <div class="wedding-card in-focus">
       <div class="card-border"></div>
-      <div class="crest-symbol">S & S</div>
+
+      <!-- ROYAL JHAROKHA CREST EMBLEM -->
+      <div class="jharokha-crest-container">
+        <svg class="jharokha-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#a88434" />
+              <stop offset="50%" stop-color="#fdf3a9" />
+              <stop offset="100%" stop-color="#a88434" />
+            </linearGradient>
+          </defs>
+
+          <!-- Lotus Crown Top Peak -->
+          <path d="M50 8 C48 13 42 16 42 20 C42 23 46 25 50 21 C54 25 58 23 58 20 C58 16 52 13 50 8 Z" fill="url(#goldGrad)" />
+
+          <!-- Outer Jharokha Arch -->
+          <path d="M15 105 L15 52 C15 32 30 22 50 22 C70 22 85 32 85 52 L85 105" stroke="url(#goldGrad)" stroke-width="2" fill="none" />
+          
+          <!-- Inner Cusped Scalloped Arch -->
+          <path d="M22 105 L22 56 C22 45 28 40 33 42 C38 44 42 38 50 36 C58 38 62 44 67 42 C72 40 78 45 78 56 L78 105" stroke="url(#goldGrad)" stroke-width="1.2" fill="none" />
+
+          <!-- Jali Lattice Top Header -->
+          <line x1="15" y1="30" x2="85" y2="30" stroke="url(#goldGrad)" stroke-width="1" />
+          <circle cx="50" cy="28" r="2" fill="url(#goldGrad)" />
+          <circle cx="36" cy="31" r="1.5" fill="url(#goldGrad)" />
+          <circle cx="64" cy="31" r="1.5" fill="url(#goldGrad)" />
+
+          <!-- Hanging Lotus Pendant Base -->
+          <path d="M50 105 L50 112 M47 112 C47 116 50 118 50 118 C50 118 53 116 53 112 Z" stroke="url(#goldGrad)" stroke-width="1.2" fill="url(#goldGrad)" />
+
+          <!-- Monogram Text S & S -->
+          <text x="50" y="70" font-family="'Cinzel', serif" font-size="14" font-weight="700" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="1">S&amp;S</text>
+        </svg>
+      </div>
+
       <span class="sub-heading">Together with their families</span>
 
-      <div style="margin: 10px 0;">
+      <div style="margin: 6px 0;">
         <h1 class="names-title">Sukriti</h1>
         <div class="ampersand">&</div>
         <h1 class="names-title">Sidhant</h1>
