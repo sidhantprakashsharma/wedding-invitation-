@@ -8,19 +8,16 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&family=Great+Vibes&family=Marcellus&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --teal-primary: #0a4f58;
-      --teal-dark: #042e34;
-      --teal-deep: #021c20;
-      --gold-dark: #916817;
+      --teal-primary: #0a424a;
+      --teal-dark: #062b31;
       --gold-main: #c59b27;
-      --gold-light: #fbeea1;
-      --paper-cream: #fbf8f2;
-      --text-dark: #122225;
-      --text-muted: #556b6e;
+      --paper-cream: #faf7f2;
+      --text-dark: #1c2b2e;
+      --text-muted: #5a6d70;
     }
 
     * {
@@ -32,29 +29,14 @@
     html, body {
       width: 100%;
       height: 100%;
+      /* Warm neutral background highlighting the central card */
+      background: #121819;
       font-family: 'Cormorant Garamond', serif;
       color: var(--text-dark);
       overflow-x: hidden;
-
-      /* Realistic Soft Draped Silk Fabric Background */
-      background: 
-        radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.12), transparent 60%),
-        radial-gradient(circle at 20% 80%, rgba(197, 155, 39, 0.08), transparent 40%),
-        linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-dark) 40%, #063940 70%, var(--teal-deep) 100%);
-      background-attachment: fixed;
     }
 
-    /* SVG Grain Filter Definition */
-    .paper-texture-layer {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.35;
-      mix-blend-mode: multiply;
-      z-index: 1;
-    }
-
-    /* Scroll Snap Container */
+    /* Snap Scroll Container */
     .snap-container {
       height: 100vh;
       overflow-y: scroll;
@@ -66,208 +48,95 @@
       height: 100vh;
       width: 100%;
       scroll-snap-align: start;
-      position: relative;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 1.2rem 0.8rem;
-      text-align: center;
+      padding: 20px 10px;
     }
 
-    /* ==========================================
-       INTRO VIDEO OVERLAY & CONTROLS
-       ========================================== */
-    #intro-overlay {
-      position: fixed;
-      inset: 0;
-      background-color: #000;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    #intro-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    #intro-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .overlay-controls {
-      position: absolute;
-      bottom: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      z-index: 10000;
-    }
-
-    .btn-enter {
-      color: #fff;
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      background: rgba(10, 79, 88, 0.85);
-      border: 1px solid var(--gold-main);
-      padding: 12px 28px;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-      backdrop-filter: blur(5px);
-      text-transform: uppercase;
-      font-family: 'Marcellus', serif;
-      transition: all 0.3s ease;
-    }
-
-    .btn-enter:hover {
-      background: var(--gold-main);
-      color: var(--teal-dark);
-    }
-
-    /* ==========================================
-       PHYSICAL CARD & VECTOR ARCH FRAME
-       ========================================== */
-    .card-container {
+    /* Realistic Card Aspect Ratio Container */
+    .wedding-card {
       position: relative;
       width: 100%;
-      max-width: 440px;
+      max-width: 420px;
       height: 100%;
-      max-height: 800px;
-      background-color: var(--paper-cream);
-      border-radius: 10px;
-
-      /* Real Card Depth & Embossed Shadow Layers */
+      max-height: 720px;
+      background: var(--paper-cream);
+      border-radius: 8px;
+      /* Realistic static shadow - no tilt or movement */
       box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.7),
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-      
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-    }
-
-    /* Inline Vector Arch Frame Wrapper */
-    .arch-frame-wrapper {
-      position: absolute;
-      inset: 10px;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    .arch-svg-bg {
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.15));
-    }
-
-    .card-content {
-      position: relative;
-      z-index: 3;
-      width: 100%;
-      height: 100%;
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(197, 155, 39, 0.3);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 2.8rem 1.8rem 1.8rem 1.8rem;
+      padding: 2.5rem 1.8rem 1.8rem 1.8rem;
+      text-align: center;
     }
 
-    /* Dynamic Metallic Gold Text Gradient + Shimmer */
-    .gold-metallic-text {
-      background: linear-gradient(
-        135deg, 
-        var(--gold-dark) 0%, 
-        var(--gold-main) 25%, 
-        var(--gold-light) 50%, 
-        var(--gold-main) 75%, 
-        var(--gold-dark) 100%
-      );
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: goldShimmer 6s linear infinite;
-      filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.12));
+    /* Static Elegant Border Accent */
+    .border-frame {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid var(--gold-main);
+      border-radius: 4px;
+      pointer-events: none;
     }
 
-    @keyframes goldShimmer {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
+    .border-frame::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px stroke var(--teal-primary);
+      opacity: 0.3;
     }
 
-    .script-title {
+    /* Typography Styling */
+    .sub-heading {
+      font-family: 'Marcellus', serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--text-muted);
+    }
+
+    .names-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.6rem;
-      line-height: 1.05;
+      font-size: 3.5rem;
+      color: var(--gold-main);
+      line-height: 1.1;
       font-weight: 400;
-      padding: 0 5px;
     }
 
     .date-badge {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 1.05rem;
+      font-size: 1rem;
       letter-spacing: 2px;
       color: var(--teal-primary);
       border-top: 1px solid var(--gold-main);
       border-bottom: 1px solid var(--gold-main);
-      padding: 6px 16px;
-      margin: 8px 0;
-      background: rgba(197, 155, 39, 0.05);
+      padding: 6px 18px;
+      margin: 12px 0;
     }
 
-    .sub-heading {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      font-family: 'Marcellus', serif;
-    }
-
-    .chhatri-icon-wrapper {
-      width: 75px;
-      height: 75px;
-      margin-top: -5px;
-    }
-
-    /* ==========================================
-       ITINERARY TIMELINE (PAGE 2)
-       ========================================== */
-    .itinerary-scroll-container {
+    /* Itinerary Scroll Area */
+    .itinerary-list {
       width: 100%;
       max-height: 48vh;
       overflow-y: auto;
+      margin: 10px 0;
       padding-right: 4px;
-      margin: 8px 0;
-      scrollbar-width: thin;
-      scrollbar-color: var(--gold-main) transparent;
     }
 
     .event-card {
-      background: rgba(10, 79, 88, 0.04);
+      background: rgba(10, 66, 74, 0.04);
       border-left: 3px solid var(--gold-main);
-      border-radius: 4px;
-      padding: 8px 10px;
-      margin-bottom: 8px;
+      border-radius: 3px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
       text-align: left;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-    }
-
-    .event-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
     .event-title {
@@ -278,436 +147,151 @@
     }
 
     .event-time {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: #fff;
       background: var(--teal-primary);
       padding: 2px 8px;
-      border-radius: 12px;
-      border: 1px solid var(--gold-main);
+      border-radius: 10px;
+      float: right;
     }
 
     .event-meta {
       font-size: 0.78rem;
       color: var(--text-muted);
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
-    .venue-link {
+    .map-btn {
       display: inline-block;
-      margin-top: 3px;
+      margin-top: 4px;
       font-size: 0.72rem;
       color: var(--teal-primary);
       text-decoration: underline;
       font-weight: 600;
     }
 
-    /* ==========================================
-       COUNTDOWN & BUTTONS
-       ========================================== */
-    #timer {
-      display: flex;
-      gap: 6px;
-      margin-top: 6px;
-      justify-content: center;
-    }
-
-    .timer-unit {
-      background: var(--teal-primary);
-      color: #fff;
-      padding: 5px 8px;
-      border-radius: 6px;
-      min-width: 44px;
-      border: 1px solid var(--gold-main);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-
-    .timer-unit .num {
-      font-size: 1rem;
-      font-weight: bold;
-      color: var(--gold-light);
-      font-family: 'Marcellus', serif;
-    }
-
-    .timer-unit .label {
-      font-size: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-action {
-      background: var(--teal-primary);
-      color: #fff;
-      border: 1px solid var(--gold-main);
-      padding: 8px 18px;
-      font-family: 'Marcellus', serif;
-      font-size: 0.78rem;
-      letter-spacing: 1px;
-      border-radius: 25px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 12px rgba(10, 79, 88, 0.25);
-      transition: all 0.3s ease;
-    }
-
-    .btn-action:hover {
-      background: var(--gold-main);
-      color: var(--teal-dark);
-    }
-
     .scroll-hint {
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       letter-spacing: 1px;
       color: var(--teal-primary);
-      animation: bounce 2s infinite;
       font-family: 'Marcellus', serif;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-5px); }
-      60% { transform: translateY(-2px); }
     }
   </style>
 </head>
 <body>
 
-  <!-- SVG Paper Grain Filter definition (no image files needed) -->
-  <svg style="display:none;">
-    <defs>
-      <filter id="paper-grain">
-        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
-        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" />
-        <feBlend mode="multiply" in="SourceGraphic" in2="noise" />
-      </filter>
-    </defs>
-  </svg>
-
-  <!-- 1. INTRO VIDEO OVERLAY -->
-  <div id="intro-overlay">
-    <video id="intro-video" playsinline autoplay muted>
-      <source src="wedding_intro.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-controls">
-      <button class="btn-enter" onclick="closeIntro()">Enter Invitation</button>
-    </div>
-  </div>
-
-  <!-- 2. MAIN INVITATION (SNAP SCROLL) -->
   <div class="snap-container">
 
-    <!-- PAGE 1: HERO COVER -->
-    <section class="section-page" id="page-1">
-      <div class="card-container">
-        <div class="paper-texture-layer" style="filter: url(#paper-grain);"></div>
-        
-        <!-- Vector Arch Frame (SVG Jali & Mughal Cusped Arch) -->
-        <div class="arch-frame-wrapper">
-          <svg class="arch-svg-bg" viewBox="0 0 400 680" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#916817" />
-                <stop offset="30%" stop-color="#fbeea1" />
-                <stop offset="50%" stop-color="#c59b27" />
-                <stop offset="80%" stop-color="#fef3b8" />
-                <stop offset="100%" stop-color="#7a550d" />
-              </linearGradient>
+    <!-- PAGE 1: COVER -->
+    <section class="section-page">
+      <div class="wedding-card">
+        <div class="border-frame"></div>
 
-              <!-- Intricate Jali Pattern Border -->
-              <pattern id="jaliPattern" width="16" height="16" patternUnits="userSpaceOnUse">
-                <rect width="16" height="16" fill="#043940" />
-                <path d="M8 0 L16 8 L8 16 L0 8 Z" fill="none" stroke="#c59b27" stroke-width="0.75" opacity="0.75"/>
-                <circle cx="8" cy="8" r="1.5" fill="#fbeea1" opacity="0.9" />
-              </pattern>
-            </defs>
+        <svg viewBox="0 0 100 100" style="width: 50px; height: 50px; fill: var(--gold-main);">
+          <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 L10 85 L90 85 L90 90 L10 90 Z" />
+        </svg>
 
-            <!-- Outer Gold Border -->
-            <rect x="4" y="4" width="392" height="672" rx="8" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" />
-            <!-- Intricate Jali Outer Frame -->
-            <rect x="10" y="10" width="380" height="660" rx="6" fill="url(#jaliPattern)" stroke="#021c20" stroke-width="1.5" />
-            <!-- Inner Gold Accent Border -->
-            <rect x="28" y="28" width="344" height="624" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" />
+        <span class="sub-heading">Together with their families</span>
 
-            <!-- Mughal Cusped Arch Cutout Canvas -->
-            <path d="M 32,648 L 32,165 
-                     Q 32,130 65,115 
-                     Q 100,100 135,75 
-                     Q 170,55 200,55 
-                     Q 230,55 265,75 
-                     Q 300,100 335,115 
-                     Q 368,130 368,165 
-                     L 368,648 Z" 
-                  fill="#fbf8f2" stroke="url(#goldGrad)" stroke-width="2.5" />
-
-            <!-- Inner Dotted Scallop Accent Line -->
-            <path d="M 38,642 L 38,170 
-                     Q 38,138 68,124 
-                     Q 100,108 132,84 
-                     Q 166,64 200,64 
-                     Q 234,64 268,84 
-                     Q 300,108 332,124 
-                     Q 362,138 362,170 
-                     L 362,642" 
-                  fill="none" stroke="#0a4f58" stroke-width="1" stroke-dasharray="3,2" opacity="0.7" />
-          </svg>
+        <div>
+          <h1 class="names-title">Sukriti</h1>
+          <div style="font-size: 1.2rem; color: var(--gold-main); margin: -4px 0;">&</div>
+          <h1 class="names-title">Sidhant</h1>
         </div>
 
-        <div class="card-content">
-          <!-- Metallic Gold Chhatri / Pavilion Vector Icon -->
-          <div class="chhatri-icon-wrapper">
-            <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
-              <path d="M50 8 C48 8, 48 14, 50 14 C52 14, 52 8, 50 8 Z 
-                       M50 14 L50 20 
-                       M30 38 C30 24, 40 20, 50 20 C60 20, 70 24, 70 38 Z 
-                       M22 42 Q 50 34 78 42 L 75 45 Q 50 38 25 45 Z" fill="url(#goldGrad)"/>
-              <!-- Pillars -->
-              <rect x="30" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="42" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="54" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="66" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <!-- Base -->
-              <rect x="22" y="75" width="56" height="4" rx="1" fill="url(#goldGrad)" />
-              <rect x="18" y="79" width="64" height="4" rx="1" fill="url(#goldGrad)" />
-            </svg>
-          </div>
-
-          <span class="sub-heading">Together with their families</span>
-
-          <div>
-            <h1 class="script-title gold-metallic-text">Sukriti</h1>
-            <div style="font-size: 1.2rem; color: var(--gold-main); margin: -6px 0;">&</div>
-            <h1 class="script-title gold-metallic-text">Sidhant</h1>
-          </div>
-
-          <div class="date-badge">
-            02 & 03 DEC 2026
-          </div>
-
-          <div>
-            <span class="sub-heading">Countdown to the Big Day</span>
-            <div id="timer">
-              <div class="timer-unit"><div class="num" id="days">00</div><div class="label">Days</div></div>
-              <div class="timer-unit"><div class="num" id="hours">00</div><div class="label">Hrs</div></div>
-              <div class="timer-unit"><div class="num" id="mins">00</div><div class="label">Mins</div></div>
-              <div class="timer-unit"><div class="num" id="secs">00</div><div class="label">Secs</div></div>
-            </div>
-          </div>
-
-          <div class="scroll-hint">Scroll Down 🪶</div>
+        <div class="date-badge">
+          02 & 03 DEC 2026
         </div>
+
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
+          Lonavala & Khandala
+        </div>
+
+        <div class="scroll-hint">Scroll Down 🪶</div>
       </div>
     </section>
 
     <!-- PAGE 2: ITINERARY -->
-    <section class="section-page" id="page-2">
-      <div class="card-container">
-        <div class="paper-texture-layer" style="filter: url(#paper-grain);"></div>
-        
-        <div class="arch-frame-wrapper">
-          <svg class="arch-svg-bg" viewBox="0 0 400 680" preserveAspectRatio="none">
-            <use href="#page-1-frame" />
-            <rect x="4" y="4" width="392" height="672" rx="8" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" />
-            <rect x="10" y="10" width="380" height="660" rx="6" fill="url(#jaliPattern)" stroke="#021c20" stroke-width="1.5" />
-            <rect x="28" y="28" width="344" height="624" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" />
-            <path d="M 32,648 L 32,165 Q 32,130 65,115 Q 100,100 135,75 Q 170,55 200,55 Q 230,55 265,75 Q 300,100 335,115 Q 368,130 368,165 L 368,648 Z" fill="#fbf8f2" stroke="url(#goldGrad)" stroke-width="2.5" />
-            <path d="M 38,642 L 38,170 Q 38,138 68,124 Q 100,108 132,84 Q 166,64 200,64 Q 234,64 268,84 Q 300,108 332,124 Q 362,138 362,170 L 362,642" fill="none" stroke="#0a4f58" stroke-width="1" stroke-dasharray="3,2" opacity="0.7" />
-          </svg>
-        </div>
+    <section class="section-page">
+      <div class="wedding-card">
+        <div class="border-frame"></div>
 
-        <div class="card-content">
-          <span class="sub-heading" style="margin-top: 2px;">Wedding Celebrations</span>
-          <p style="font-size: 0.82rem; color: var(--text-muted); font-style: italic;">
-            We are overjoyed to invite you to celebrate our special moments!
-          </p>
+        <span class="sub-heading">Wedding Celebrations</span>
 
-          <div class="itinerary-scroll-container">
-            <!-- Event 1 -->
-            <div class="event-card">
-              <div class="event-header">
-                <span class="event-title">Ganesh Poojan</span>
-                <span class="event-time">1:00 PM</span>
-              </div>
-              <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
-            </div>
-
-            <!-- Event 2 -->
-            <div class="event-card">
-              <div class="event-header">
-                <span class="event-title">Mandap</span>
-                <span class="event-time">2:00 PM</span>
-              </div>
-              <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
-            </div>
-
-            <!-- Event 3 -->
-            <div class="event-card">
-              <div class="event-header">
-                <span class="event-title">Mamera</span>
-                <span class="event-time">11:00 AM</span>
-              </div>
-              <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
-            </div>
-
-            <!-- Event 4 -->
-            <div class="event-card">
-              <div class="event-header">
-                <span class="event-title">Barat</span>
-                <span class="event-time">5:00 PM</span>
-              </div>
-              <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
-            </div>
-
-            <!-- Event 5 -->
-            <div class="event-card">
-              <div class="event-header">
-                <span class="event-title">Food / Dinner</span>
-                <span class="event-time">9:00 PM</span>
-              </div>
-              <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
-            </div>
-
-            <!-- Event 6 -->
-            <div class="event-card" style="border-left-color: var(--teal-primary); background: rgba(10, 79, 88, 0.08);">
-              <div class="event-header">
-                <span class="event-title">Vivah (Pheras)</span>
-                <span class="event-time">Late Night</span>
-              </div>
-              <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Amoravida, Khandala</div>
-              <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="venue-link">View Map Location ↗</a>
-            </div>
+        <div class="itinerary-list">
+          <div class="event-card">
+            <span class="event-time">1:00 PM</span>
+            <div class="event-title">Ganesh Poojan</div>
+            <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
           </div>
 
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sukriti+%26+Sidhant+Wedding&dates=20261202T073000Z/20261204T020000Z&details=Wedding+celebrations+at+Hotel+Sapphire+Lonavala+%26+Amoravida+Khandala" target="_blank" class="btn-action">
-            🗓️ Add to Google Calendar
-          </a>
+          <div class="event-card">
+            <span class="event-time">2:00 PM</span>
+            <div class="event-title">Mandap</div>
+            <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
+          </div>
 
-          <div class="scroll-hint">Scroll Down 🪶</div>
+          <div class="event-card">
+            <span class="event-time">11:00 AM</span>
+            <div class="event-title">Mamera</div>
+            <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
+          </div>
+
+          <div class="event-card">
+            <span class="event-time">5:00 PM</span>
+            <div class="event-title">Barat</div>
+            <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
+          </div>
+
+          <div class="event-card">
+            <span class="event-time">Late Night</span>
+            <div class="event-title">Vivah (Pheras)</div>
+            <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Amoravida, Khandala</div>
+            <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="map-btn">View Map Location ↗</a>
+          </div>
         </div>
+
+        <div class="scroll-hint">Scroll Down 🪶</div>
       </div>
     </section>
 
-    <!-- PAGE 3: PARENTS & CLOSING -->
-    <section class="section-page" id="page-3">
-      <div class="card-container">
-        <div class="paper-texture-layer" style="filter: url(#paper-grain);"></div>
-        
-        <div class="arch-frame-wrapper">
-          <svg class="arch-svg-bg" viewBox="0 0 400 680" preserveAspectRatio="none">
-            <rect x="4" y="4" width="392" height="672" rx="8" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" />
-            <rect x="10" y="10" width="380" height="660" rx="6" fill="url(#jaliPattern)" stroke="#021c20" stroke-width="1.5" />
-            <rect x="28" y="28" width="344" height="624" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" />
-            <path d="M 32,648 L 32,165 Q 32,130 65,115 Q 100,100 135,75 Q 170,55 200,55 Q 230,55 265,75 Q 300,100 335,115 Q 368,130 368,165 L 368,648 Z" fill="#fbf8f2" stroke="url(#goldGrad)" stroke-width="2.5" />
-            <path d="M 38,642 L 38,170 Q 38,138 68,124 Q 100,108 132,84 Q 166,64 200,64 Q 234,64 268,84 Q 300,108 332,124 Q 362,138 362,170 L 362,642" fill="none" stroke="#0a4f58" stroke-width="1" stroke-dasharray="3,2" opacity="0.7" />
-          </svg>
+    <!-- PAGE 3: BLESSINGS -->
+    <section class="section-page">
+      <div class="wedding-card" style="justify-content: center; gap: 24px;">
+        <div class="border-frame"></div>
+
+        <p style="font-size: 1.15rem; color: var(--teal-primary); line-height: 1.5; font-style: italic; padding: 0 10px;">
+          "We seek your presence, prayers, and blessings as we begin our new journey together!"
+        </p>
+
+        <div style="width: 70%; border-top: 1px stroke var(--gold-main); opacity: 0.6;"></div>
+
+        <div>
+          <span class="sub-heading">Bride's Parents</span>
+          <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
+            Sangita & Sunil Kumar Shukla
+          </h3>
         </div>
 
-        <div class="card-content" style="justify-content: center; gap: 18px;">
-          <div class="chhatri-icon-wrapper" style="width: 55px; height: 55px;">
-            <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
-              <path d="M50 8 C48 8, 48 14, 50 14 C52 14, 52 8, 50 8 Z M50 14 L50 20 M30 38 C30 24, 40 20, 50 20 C60 20, 70 24, 70 38 Z M22 42 Q 50 34 78 42 L 75 45 Q 50 38 25 45 Z" fill="url(#goldGrad)"/>
-              <rect x="30" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="42" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="54" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="66" y="45" width="4" height="30" fill="url(#goldGrad)" />
-              <rect x="22" y="75" width="56" height="4" rx="1" fill="url(#goldGrad)" />
-              <rect x="18" y="79" width="64" height="4" rx="1" fill="url(#goldGrad)" />
-            </svg>
-          </div>
+        <div>
+          <span class="sub-heading">Groom's Parents</span>
+          <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
+            Sadhana & Om Prakash Sharma
+          </h3>
+        </div>
 
-          <div>
-            <p style="font-size: 1.15rem; color: var(--teal-primary); line-height: 1.5; font-weight: 600; padding: 0 10px; font-style: italic;">
-              "We would love to see you and celebrate these cherished moments together!"
-            </p>
-          </div>
-
-          <div style="width: 80%; border-top: 1px dashed var(--gold-main); margin: 2px 0;"></div>
-
-          <!-- Bride's Parents -->
-          <div>
-            <span class="sub-heading">Bride's Parents</span>
-            <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 700;">
-              Sangita & Sunil Kumar Shukla
-            </h3>
-          </div>
-
-          <!-- Groom's Parents -->
-          <div>
-            <span class="sub-heading">Groom's Parents</span>
-            <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 700;">
-              Sadhana & Om Prakash Sharma
-            </h3>
-          </div>
-
-          <div class="gold-metallic-text" style="font-family: 'Great Vibes', cursive; font-size: 2.6rem; margin-top: 8px;">
-            Warm Regards & Blessings
-          </div>
+        <div style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--gold-main); margin-top: 10px;">
+          Warm Regards & Blessings
         </div>
       </div>
     </section>
 
   </div>
 
-  <script>
-    // 1. Intro Overlay Dismissal
-    const overlay = document.getElementById('intro-overlay');
-    const video = document.getElementById('intro-video');
-
-    function closeIntro() {
-      if (overlay) overlay.classList.add('hidden');
-      if (video) video.pause();
-    }
-
-    document.addEventListener('click', function() {
-      if (video && video.paused) {
-        video.play().catch(e => console.log('Autoplay prevented:', e));
-      }
-      if (video) video.muted = false;
-    }, { once: true });
-
-    if (video) {
-      video.addEventListener('ended', closeIntro);
-      video.addEventListener('error', closeIntro);
-    }
-
-    setTimeout(() => {
-      if (overlay && !overlay.classList.contains('hidden') && video && video.paused) {
-        closeIntro();
-      }
-    }, 6000);
-
-    // 2. Countdown Timer Logic
-    const weddingDate = new Date("December 2, 2026 13:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
-
-      if (distance < 0) {
-        document.getElementById("timer").innerHTML = "<div style='color: var(--teal-primary); font-weight: bold; font-size: 1.1rem;'>The Celebrations Have Begun! 🎉</div>";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days < 10 ? '0' + days : days;
-      document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
-      document.getElementById("mins").innerText = minutes < 10 ? '0' + minutes : minutes;
-      document.getElementById("secs").innerText = seconds < 10 ? '0' + seconds : seconds;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
 </body>
 </html>
