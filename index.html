@@ -31,12 +31,10 @@
     html, body {
       width: 100%;
       min-height: 100vh;
-      /* Deep royal backdrop - subtle luxury atmosphere */
       background: radial-gradient(circle at 50% 30%, #08383f 0%, var(--bg-dark) 85%);
       background-attachment: fixed;
       font-family: 'Cormorant Garamond', serif;
       color: var(--text-dark);
-      /* Passive Natural Scroll */
       overflow-y: auto;
       scroll-behavior: smooth;
     }
@@ -100,27 +98,48 @@
     }
 
     /* ==========================================
-       2. MINIMALIST LUXURY CARDS WRAPPER
+       2. CARDS CONTAINER & GOLD THREAD SPINE
        ========================================== */
     .cards-wrapper {
+      position: relative;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 60px;
-      padding: 60px 15px;
+      gap: 70px;
+      padding: 80px 15px;
+    }
+
+    /* Vertical Gold Thread Backbone */
+    .cards-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 100px;
+      bottom: 100px;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--gold-antique) 12%,
+        var(--gold-antique) 88%,
+        transparent
+      );
+      transform: translateX(-50%);
+      z-index: 1;
+      opacity: 0.55;
     }
 
     /* Minimalist Physical Card Container */
     .wedding-card {
       position: relative;
+      z-index: 2;
       width: 100%;
       max-width: 440px;
       min-height: 720px;
       background-color: var(--card-cream);
       border-radius: 4px;
 
-      /* Soft ambient physical drop shadow resting on dark surface */
       box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.55),
         0 8px 16px rgba(0, 0, 0, 0.25),
@@ -132,9 +151,25 @@
       justify-content: space-between;
       padding: 3rem 2.2rem;
       text-align: center;
+
+      /* Soft Depth-Blur Focus Transitions */
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Precision Double Hairline Border */
+    .wedding-card.in-focus {
+      opacity: 1;
+      filter: blur(0px);
+      transform: scale(1);
+    }
+
+    .wedding-card.out-of-focus {
+      opacity: 0.45;
+      filter: blur(2.5px);
+      transform: scale(0.97);
+    }
+
     .card-border {
       position: absolute;
       inset: 14px;
@@ -149,7 +184,6 @@
       border: 1px solid rgba(168, 132, 52, 0.35);
     }
 
-    /* Minimal Crest Motif */
     .crest-symbol {
       font-family: 'Cinzel', serif;
       font-size: 0.9rem;
@@ -158,7 +192,6 @@
       margin-bottom: 5px;
     }
 
-    /* Typography Hierarchy */
     .sub-heading {
       font-family: 'Marcellus', serif;
       font-size: 0.78rem;
@@ -236,25 +269,25 @@
     .event-detail {
       font-size: 0.82rem;
       color: var(--text-muted);
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
-    .venue-link {
+    .location-link {
       display: inline-block;
-      margin-top: 3px;
-      font-size: 0.72rem;
-      color: var(--gold-antique);
+      font-size: 0.82rem;
+      color: var(--teal-primary);
       text-decoration: none;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      margin-top: 3px;
       font-family: 'Marcellus', serif;
+      letter-spacing: 0.5px;
+      transition: color 0.2s ease;
     }
 
-    .venue-link:hover {
+    .location-link:hover {
+      color: var(--gold-antique);
       text-decoration: underline;
     }
 
-    /* Action Buttons */
     .btn-action {
       background: var(--teal-primary);
       color: #fff;
@@ -287,7 +320,7 @@
 </head>
 <body>
 
-  <!-- 1. INTRO VIDEO OVERLAY -->
+  <!-- INTRO VIDEO OVERLAY -->
   <div id="intro-overlay">
     <video id="intro-video" playsinline autoplay muted>
       <source src="wedding_intro.mp4" type="video/mp4">
@@ -297,15 +330,13 @@
     </div>
   </div>
 
-  <!-- 2. MAIN CARDS (PASSIVE NATURAL SCROLL) -->
+  <!-- MAIN CARDS & THREAD SPINE -->
   <div class="cards-wrapper">
 
-    <!-- CARD 1: HERO INVITATION -->
-    <div class="wedding-card">
+    <!-- CARD 1: HERO -->
+    <div class="wedding-card in-focus">
       <div class="card-border"></div>
-
       <div class="crest-symbol">S & S</div>
-
       <span class="sub-heading">Together with their families</span>
 
       <div style="margin: 10px 0;">
@@ -330,53 +361,46 @@
     </div>
 
     <!-- CARD 2: ITINERARY -->
-    <div class="wedding-card">
+    <div class="wedding-card out-of-focus">
       <div class="card-border"></div>
-
       <div class="crest-symbol">PROGRAM</div>
       <span class="sub-heading">Wedding Celebrations</span>
 
       <div class="itinerary-container">
-        <!-- Event 1 -->
         <div class="event-row">
           <span class="event-name">Ganesh Poojan</span>
-          <span class="event-detail">Dec 02 • 1:00 PM • Hotel Sapphire, Lonavala</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">Map Location ↗</a>
+          <span class="event-detail">Dec 02 • 1:00 PM</span>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">📍 Hotel Sapphire, Lonavala ↗</a>
         </div>
 
-        <!-- Event 2 -->
         <div class="event-row">
           <span class="event-name">Mandap</span>
-          <span class="event-detail">Dec 02 • 2:00 PM • Hotel Sapphire, Lonavala</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">Map Location ↗</a>
+          <span class="event-detail">Dec 02 • 2:00 PM</span>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">📍 Hotel Sapphire, Lonavala ↗</a>
         </div>
 
-        <!-- Event 3 -->
         <div class="event-row">
           <span class="event-name">Mamera</span>
-          <span class="event-detail">Dec 03 • 11:00 AM • Hotel Sapphire, Lonavala</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">Map Location ↗</a>
+          <span class="event-detail">Dec 03 • 11:00 AM</span>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">📍 Hotel Sapphire, Lonavala ↗</a>
         </div>
 
-        <!-- Event 4 -->
         <div class="event-row">
           <span class="event-name">Barat</span>
-          <span class="event-detail">Dec 03 • 5:00 PM • Hotel Sapphire, Lonavala</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">Map Location ↗</a>
+          <span class="event-detail">Dec 03 • 5:00 PM</span>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">📍 Hotel Sapphire, Lonavala ↗</a>
         </div>
 
-        <!-- Event 5 -->
         <div class="event-row">
           <span class="event-name">Dinner</span>
-          <span class="event-detail">Dec 03 • 9:00 PM • Hotel Sapphire, Lonavala</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">Map Location ↗</a>
+          <span class="event-detail">Dec 03 • 9:00 PM</span>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">📍 Hotel Sapphire, Lonavala ↗</a>
         </div>
 
-        <!-- Event 6 -->
         <div class="event-row" style="background: rgba(10, 79, 88, 0.03); padding: 10px 4px;">
           <span class="event-name" style="color: var(--teal-primary);">Vivah (Pheras)</span>
-          <span class="event-detail">Dec 03 • Late Night • Amoravida, Khandala</span>
-          <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="venue-link">Map Location ↗</a>
+          <span class="event-detail">Dec 03 • Late Night</span>
+          <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="location-link">📍 Amoravida, Khandala ↗</a>
         </div>
       </div>
 
@@ -385,10 +409,9 @@
       </a>
     </div>
 
-    <!-- CARD 3: BLESSINGS & PARENTS -->
-    <div class="wedding-card" style="justify-content: center; gap: 24px;">
+    <!-- CARD 3: BLESSINGS -->
+    <div class="wedding-card out-of-focus">
       <div class="card-border"></div>
-
       <div class="crest-symbol">BLESSINGS</div>
 
       <p style="font-size: 1.15rem; color: var(--teal-primary); line-height: 1.6; font-style: italic; padding: 0 10px;">
@@ -419,7 +442,7 @@
   </div>
 
   <script>
-    // Intro Overlay Dismissal Logic
+    // 1. INTRO OVERLAY LOGIC
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video');
 
@@ -445,6 +468,29 @@
         closeIntro();
       }
     }, 6000);
+
+    // 2. SOFT DEPTH-BLUR SCROLL OBSERVER
+    const cards = document.querySelectorAll('.wedding-card');
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -20% 0px',
+      threshold: 0.5
+    };
+
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-focus');
+          entry.target.classList.remove('out-of-focus');
+        } else {
+          entry.target.classList.remove('in-focus');
+          entry.target.classList.add('out-of-focus');
+        }
+      });
+    }, observerOptions);
+
+    cards.forEach(card => cardObserver.observe(card));
   </script>
 </body>
 </html>
