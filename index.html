@@ -16,8 +16,9 @@
       --card-cream: #fcfaf6;
       --teal-primary: #0a4f58;
       --teal-deep: #052c31;
-      --gold-antique: #a88434;
-      --gold-light: #d4af37;
+      --gold-antique: #947128;
+      --gold-deep: #704d0d;
+      --gold-light: #c59b27;
       --text-dark: #1a2729;
       --text-muted: #627275;
     }
@@ -161,17 +162,17 @@
       content: '';
       position: absolute;
       inset: 4px;
-      border: 1px solid rgba(168, 132, 52, 0.35);
+      border: 1px solid rgba(148, 113, 40, 0.3);
     }
 
     /* ==========================================
-       3. ROYAL JHAROKHA CREST STYLING
+       3. ANTIQUE MATTE JHAROKHA CREST
        ========================================== */
     .jharokha-crest-container {
-      width: 110px;
-      height: 125px;
-      margin-bottom: 5px;
-      filter: drop-shadow(0px 2px 4px rgba(168, 132, 52, 0.25));
+      width: 100px;
+      height: 115px;
+      margin-bottom: 2px;
+      opacity: 0.92;
     }
 
     .jharokha-svg {
@@ -252,7 +253,6 @@
       padding-left: 54px;
     }
 
-    /* Left Vertical Gold Spine */
     .vertical-spine {
       position: absolute;
       left: 18px;
@@ -268,19 +268,18 @@
       );
     }
 
-    /* Moving Pearl Node */
     .pearl-node {
       position: absolute;
       left: 18px;
       top: 20px;
       transform: translate(-50%, -50%);
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e8dec8 60%, var(--gold-antique) 100%);
       box-shadow: 
-        0 0 10px rgba(212, 175, 55, 0.8),
-        0 0 2px rgba(0, 0, 0, 0.4);
+        0 0 6px rgba(148, 113, 40, 0.5),
+        0 0 2px rgba(0, 0, 0, 0.3);
       z-index: 5;
       transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
@@ -288,17 +287,17 @@
     .pearl-node::after {
       content: '';
       position: absolute;
-      inset: -4px;
+      inset: -3px;
       border-radius: 50%;
       border: 1px solid var(--gold-light);
-      opacity: 0.6;
+      opacity: 0.5;
       animation: pearlPulse 2s infinite ease-in-out;
     }
 
     @keyframes pearlPulse {
-      0% { transform: scale(0.9); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 0.2; }
-      100% { transform: scale(0.9); opacity: 0.8; }
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.25); opacity: 0.2; }
+      100% { transform: scale(0.9); opacity: 0.7; }
     }
 
     .event-item {
@@ -418,37 +417,37 @@
     <div class="wedding-card in-focus">
       <div class="card-border"></div>
 
-      <!-- ROYAL JHAROKHA CREST EMBLEM -->
+      <!-- ANTIQUE MATTE JHAROKHA CREST -->
       <div class="jharokha-crest-container">
         <svg class="jharokha-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#a88434" />
-              <stop offset="50%" stop-color="#fdf3a9" />
-              <stop offset="100%" stop-color="#a88434" />
+            <linearGradient id="antiqueGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#704d0d" />
+              <stop offset="45%" stop-color="#c59b27" />
+              <stop offset="100%" stop-color="#8a6218" />
             </linearGradient>
           </defs>
 
-          <!-- Lotus Crown Top Peak -->
-          <path d="M50 8 C48 13 42 16 42 20 C42 23 46 25 50 21 C54 25 58 23 58 20 C58 16 52 13 50 8 Z" fill="url(#goldGrad)" />
+          <!-- Lotus Crown Peak -->
+          <path d="M50 8 C48 13 43 16 43 20 C43 23 46 24 50 21 C54 24 57 23 57 20 C57 16 52 13 50 8 Z" fill="url(#antiqueGoldGrad)" />
 
           <!-- Outer Jharokha Arch -->
-          <path d="M15 105 L15 52 C15 32 30 22 50 22 C70 22 85 32 85 52 L85 105" stroke="url(#goldGrad)" stroke-width="2" fill="none" />
+          <path d="M16 104 L16 52 C16 33 30 23 50 23 C70 23 84 33 84 52 L84 104" stroke="url(#antiqueGoldGrad)" stroke-width="1.2" fill="none" />
           
           <!-- Inner Cusped Scalloped Arch -->
-          <path d="M22 105 L22 56 C22 45 28 40 33 42 C38 44 42 38 50 36 C58 38 62 44 67 42 C72 40 78 45 78 56 L78 105" stroke="url(#goldGrad)" stroke-width="1.2" fill="none" />
+          <path d="M22 104 L22 56 C22 46 28 41 33 43 C38 45 42 39 50 37 C58 39 62 45 67 43 C72 41 78 46 78 56 L78 104" stroke="url(#antiqueGoldGrad)" stroke-width="1" fill="none" />
 
-          <!-- Jali Lattice Top Header -->
-          <line x1="15" y1="30" x2="85" y2="30" stroke="url(#goldGrad)" stroke-width="1" />
-          <circle cx="50" cy="28" r="2" fill="url(#goldGrad)" />
-          <circle cx="36" cy="31" r="1.5" fill="url(#goldGrad)" />
-          <circle cx="64" cy="31" r="1.5" fill="url(#goldGrad)" />
+          <!-- Delicate Lattice Lines -->
+          <line x1="16" y1="30" x2="84" y2="30" stroke="url(#antiqueGoldGrad)" stroke-width="0.8" />
+          <circle cx="50" cy="28" r="1.5" fill="url(#antiqueGoldGrad)" />
+          <circle cx="38" cy="30.5" r="1" fill="url(#antiqueGoldGrad)" />
+          <circle cx="62" cy="30.5" r="1" fill="url(#antiqueGoldGrad)" />
 
-          <!-- Hanging Lotus Pendant Base -->
-          <path d="M50 105 L50 112 M47 112 C47 116 50 118 50 118 C50 118 53 116 53 112 Z" stroke="url(#goldGrad)" stroke-width="1.2" fill="url(#goldGrad)" />
+          <!-- Base Pendant -->
+          <path d="M50 104 L50 110 M48 110 C48 113 50 115 50 115 C50 115 52 113 52 110 Z" stroke="url(#antiqueGoldGrad)" stroke-width="1" fill="url(#antiqueGoldGrad)" />
 
-          <!-- Monogram Text S & S -->
-          <text x="50" y="70" font-family="'Cinzel', serif" font-size="14" font-weight="700" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="1">S&amp;S</text>
+          <!-- Monogram S & S -->
+          <text x="50" y="69" font-family="'Cinzel', serif" font-size="12.5" font-weight="600" fill="url(#antiqueGoldGrad)" text-anchor="middle" letter-spacing="1.5">S&amp;S</text>
         </svg>
       </div>
 
@@ -594,9 +593,7 @@
   </div>
 
   <script>
-    // ==========================================
     // 1. INTRO OVERLAY LOGIC
-    // ==========================================
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video');
 
@@ -623,9 +620,7 @@
       }
     }, 6000);
 
-    // ==========================================
     // 2. SOFT DEPTH-BLUR SCROLL OBSERVER
-    // ==========================================
     const cards = document.querySelectorAll('.wedding-card');
     
     const cardObserver = new IntersectionObserver((entries) => {
@@ -642,9 +637,7 @@
 
     cards.forEach(card => cardObserver.observe(card));
 
-    // ==========================================
     // 3. DYNAMIC PEARL & EVENT FOCUS CONTROLLER
-    // ==========================================
     function setupItineraryCard(cardId, pearlId) {
       const card = document.getElementById(cardId);
       const pearl = document.getElementById(pearlId);
@@ -668,7 +661,6 @@
           }
         });
 
-        // Align Pearl position and update active item
         items.forEach((item, index) => {
           if (index === closestIndex) {
             item.classList.add('active');
@@ -688,14 +680,12 @@
       window.addEventListener('scroll', syncPearlOnScroll, { passive: true });
       window.addEventListener('resize', syncPearlOnScroll);
       
-      // Tap handler to focus item directly
       items.forEach((item) => {
         item.addEventListener('click', () => {
           item.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
       });
 
-      // Initial position calculate
       syncPearlOnScroll();
     }
 
