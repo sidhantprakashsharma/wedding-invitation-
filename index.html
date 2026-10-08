@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Invitation | Sukriti & Sidhant</title>
-  
-  <!-- Fonts -->
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -13,14 +13,11 @@
   <style>
     :root {
       --teal-primary: #0a424a;
-      --teal-dark: #05262c;
-      --gold-dark: #a17822;
-      --gold-main: #d4af37;
-      --gold-light: #fef0a3;
-      --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-      --bg-ivory: #faf6f0;
-      --text-dark: #1a282a;
-      --text-muted: #536668;
+      --teal-dark: #062b31;
+      --gold-main: #c59b27;
+      --gold-light: #fbeea1;
+      --text-dark: #1c2b2e;
+      --text-muted: #5a6d70;
     }
 
     * {
@@ -32,7 +29,8 @@
     html, body {
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, #0a424a 0%, #03171a 100%);
+      /* Uses table_bg.jpg as the background for the entire page */
+      background: var(--teal-dark) url('table_bg.jpg') center/cover no-repeat fixed;
       font-family: 'Marcellus', serif;
       color: var(--text-dark);
       overflow-x: hidden;
@@ -55,12 +53,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 1.2rem 1rem;
+      padding: 1.5rem 1rem;
       text-align: center;
     }
 
     /* ==========================================
-       INTRO VIDEO OVERLAY
+       INTRO VIDEO OVERLAY & CONTROLS
        ========================================== */
     #intro-overlay {
       position: fixed;
@@ -97,59 +95,55 @@
     }
 
     .btn-enter {
-      color: var(--gold-light);
+      color: #fff;
       font-size: 0.85rem;
       letter-spacing: 2px;
-      background: rgba(5, 38, 44, 0.9);
+      background: rgba(10, 66, 74, 0.85);
       border: 1px solid var(--gold-main);
-      padding: 12px 30px;
+      padding: 12px 28px;
       border-radius: 30px;
       cursor: pointer;
       box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(5px);
       text-transform: uppercase;
       font-family: 'Marcellus', serif;
+      transition: all 0.3s ease;
+    }
+
+    .btn-enter:hover {
+      background: var(--gold-main);
+      color: var(--teal-dark);
     }
 
     /* ==========================================
-       REAL CARD LAYOUT & DECORATION
+       ROYAL CARD FRAME USING UPLOADED TEXTURES
        ========================================== */
     .royal-border-frame {
       position: relative;
       width: 100%;
-      max-width: 450px;
+      max-width: 480px;
       height: 100%;
-      max-height: 800px;
-      background-color: var(--bg-ivory);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 60px rgba(197, 155, 39, 0.08);
+      max-height: 820px;
+      /* Uses paper_texture.jpg as cardstock background */
+      background: #faf7f2 url('paper_texture.jpg') center/cover no-repeat;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 2.2rem 1.5rem 1.8rem 1.5rem;
-      border-radius: 8px;
+      padding: 2.2rem 1.8rem;
+      border-radius: 12px;
       overflow: hidden;
       border: 8px solid var(--teal-primary);
       outline: 2px solid var(--gold-main);
       outline-offset: -5px;
     }
 
-    /* Embedded Paper Grain Texture Overlay */
-    .paper-texture-layer {
+    /* Frame Arch overlay image */
+    .frame-overlay {
       position: absolute;
       inset: 0;
-      opacity: 0.45;
-      pointer-events: none;
-      z-index: 1;
-      filter: url(#paper-noise);
-    }
-
-    /* Embedded Mughal Arch SVG Overlay */
-    .svg-frame-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      background: url('frame_arch.png') center/100% 100% no-repeat;
       pointer-events: none;
       z-index: 2;
     }
@@ -165,30 +159,31 @@
       justify-content: space-between;
     }
 
-    /* Gold Foil Text Shader */
+    /* Gold Foil Text using gold_foil.jpg texture */
     .gold-foil-text {
-      background: var(--gold-gradient);
+      background: url('gold_foil.jpg') center/cover repeat;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 700;
-      filter: drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.15));
     }
 
     .script-title {
       font-family: 'Great Vibes', cursive;
       font-size: 3.5rem;
       line-height: 1.1;
+      padding: 0 5px;
     }
 
     .date-badge {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       letter-spacing: 2px;
       color: var(--teal-primary);
       border-top: 1px solid var(--gold-main);
       border-bottom: 1px solid var(--gold-main);
-      padding: 6px 16px;
-      margin: 8px 0;
+      padding: 6px 18px;
+      margin: 10px 0;
     }
 
     .sub-heading {
@@ -196,6 +191,13 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--text-muted);
+    }
+
+    .arch-svg {
+      width: 65px;
+      height: 65px;
+      fill: var(--gold-main);
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
 
     /* ==========================================
@@ -210,7 +212,7 @@
     }
 
     .event-card {
-      background: rgba(10, 66, 74, 0.05);
+      background: rgba(10, 66, 74, 0.04);
       border-left: 3px solid var(--gold-main);
       border-radius: 4px;
       padding: 10px 12px;
@@ -232,12 +234,13 @@
     }
 
     .event-time {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: #fff;
-      background: var(--teal-dark);
+      background: var(--teal-primary);
       padding: 2px 8px;
       border-radius: 12px;
+      border: 1px solid var(--gold-main);
     }
 
     .event-meta {
@@ -261,19 +264,21 @@
     #timer {
       display: flex;
       gap: 8px;
-      margin-top: 6px;
+      margin-top: 8px;
+      justify-content: center;
     }
 
     .timer-unit {
       background: var(--teal-primary);
       color: #fff;
-      padding: 5px 8px;
+      padding: 6px 10px;
       border-radius: 6px;
-      min-width: 44px;
+      min-width: 48px;
+      border: 1px solid var(--gold-main);
     }
 
     .timer-unit .num {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       font-weight: bold;
       color: var(--gold-light);
     }
@@ -281,13 +286,14 @@
     .timer-unit .label {
       font-size: 0.55rem;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .btn-action {
       background: var(--teal-primary);
       color: #fff;
       border: 1px solid var(--gold-main);
-      padding: 8px 18px;
+      padding: 9px 20px;
       font-family: 'Marcellus', serif;
       font-size: 0.8rem;
       letter-spacing: 1px;
@@ -297,6 +303,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--gold-main);
+      color: var(--teal-dark);
     }
 
     .scroll-hint {
@@ -315,58 +328,33 @@
 </head>
 <body>
 
-  <!-- SVG Paper Grain Filter Definition -->
-  <svg style="display:none;">
-    <filter id="paper-noise">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" />
-      <feDiffuseLighting in="noise" lighting-color="#fff" surfaceScale="2" result="light">
-        <feDistantLight azimuth="60" elevation="50" />
-      </feDiffuseLighting>
-      <feBlend mode="multiply" in="SourceGraphic" in2="light" result="blend" />
-    </filter>
-  </svg>
-
   <!-- 1. INTRO VIDEO OVERLAY -->
   <div id="intro-overlay">
     <video id="intro-video" playsinline autoplay muted>
       <source src="wedding_intro.mp4" type="video/mp4">
     </video>
     <div class="overlay-controls">
-      <button class="btn-enter" onclick="closeIntro()">Enter Invitation ➔</button>
+      <button class="btn-enter" onclick="closeIntro()">Enter Invitation</button>
     </div>
   </div>
 
   <!-- 2. MAIN INVITATION (SNAP SCROLL) -->
   <div class="snap-container">
 
-    <!-- PAGE 1: COVER -->
+    <!-- PAGE 1: HERO COVER -->
     <section class="section-page" id="page-1">
       <div class="royal-border-frame">
-        <div class="paper-texture-layer"></div>
-
-        <!-- Embedded Mughal Arch & Ornament Frame SVG -->
-        <svg class="svg-frame-bg" viewBox="0 0 400 700" preserveAspectRatio="none">
-          <!-- Outer Jaali Border Trim -->
-          <rect x="10" y="10" width="380" height="680" fill="none" stroke="#0a424a" stroke-width="2" stroke-dasharray="6,3"/>
-          <rect x="16" y="16" width="368" height="668" fill="none" stroke="#c59b27" stroke-width="1"/>
-          
-          <!-- Mughal Arch Top -->
-          <path d="M 40 180 C 100 120, 150 70, 200 40 C 250 70, 300 120, 360 180" fill="none" stroke="#c59b27" stroke-width="2"/>
-          <path d="M 45 185 C 105 125, 152 75, 200 48 C 248 75, 295 125, 355 185" fill="none" stroke="#0a424a" stroke-width="1.5"/>
-          
-          <!-- Golden Chhatri Motif -->
-          <g transform="translate(200, 75) scale(0.7)" fill="#c59b27">
-            <path d="M-25,0 C-15,-20 15,-20 25,0 Z M-2,0 L2,0 L2,-15 L-2,-15 Z M0,-15 L0,-22"/>
-            <circle cx="0" cy="-24" r="2.5"/>
-          </g>
-        </svg>
-
+        <div class="frame-overlay"></div>
         <div class="card-content">
-          <span class="sub-heading" style="margin-top: 55px;">Together with their families</span>
+          <svg class="arch-svg" viewBox="0 0 100 100">
+            <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 M10 85 L90 85 L90 90 L10 90 Z" />
+          </svg>
+
+          <span class="sub-heading">Together with their families</span>
 
           <div>
             <h1 class="script-title gold-foil-text">Sukriti</h1>
-            <div style="font-size: 1.2rem; color: var(--gold-main); margin: -4px 0;">&</div>
+            <div style="font-size: 1.3rem; color: var(--gold-main); margin: -5px 0;">&</div>
             <h1 class="script-title gold-foil-text">Sidhant</h1>
           </div>
 
@@ -392,20 +380,15 @@
     <!-- PAGE 2: ITINERARY -->
     <section class="section-page" id="page-2">
       <div class="royal-border-frame">
-        <div class="paper-texture-layer"></div>
-
-        <svg class="svg-frame-bg" viewBox="0 0 400 700" preserveAspectRatio="none">
-          <rect x="10" y="10" width="380" height="680" fill="none" stroke="#0a424a" stroke-width="2" stroke-dasharray="6,3"/>
-          <rect x="16" y="16" width="368" height="668" fill="none" stroke="#c59b27" stroke-width="1"/>
-        </svg>
-
+        <div class="frame-overlay"></div>
         <div class="card-content">
-          <span class="sub-heading" style="margin-top: 15px;">Wedding Celebrations</span>
+          <span class="sub-heading" style="margin-top: 5px;">Wedding Celebrations</span>
           <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
             We are overjoyed to invite you to celebrate our special moments!
           </p>
 
           <div class="itinerary-scroll-container">
+            <!-- Event 1 -->
             <div class="event-card">
               <div class="event-header">
                 <span class="event-title">Ganesh Poojan</span>
@@ -415,6 +398,7 @@
               <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
             </div>
 
+            <!-- Event 2 -->
             <div class="event-card">
               <div class="event-header">
                 <span class="event-title">Mandap</span>
@@ -424,6 +408,7 @@
               <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
             </div>
 
+            <!-- Event 3 -->
             <div class="event-card">
               <div class="event-header">
                 <span class="event-title">Mamera</span>
@@ -433,6 +418,7 @@
               <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
             </div>
 
+            <!-- Event 4 -->
             <div class="event-card">
               <div class="event-header">
                 <span class="event-title">Barat</span>
@@ -442,6 +428,7 @@
               <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
             </div>
 
+            <!-- Event 5 -->
             <div class="event-card">
               <div class="event-header">
                 <span class="event-title">Food / Dinner</span>
@@ -451,7 +438,8 @@
               <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
             </div>
 
-            <div class="event-card">
+            <!-- Event 6 -->
+            <div class="event-card" style="border-left-color: var(--teal-primary);">
               <div class="event-header">
                 <span class="event-title">Vivah (Pheras)</span>
                 <span class="event-time">Late Night</span>
@@ -473,22 +461,21 @@
     <!-- PAGE 3: PARENTS & CLOSING -->
     <section class="section-page" id="page-3">
       <div class="royal-border-frame">
-        <div class="paper-texture-layer"></div>
+        <div class="frame-overlay"></div>
+        <div class="card-content" style="justify-content: center; gap: 20px;">
+          <svg class="arch-svg" viewBox="0 0 100 100">
+            <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 M10 85 L90 85 L90 90 L10 90 Z" />
+          </svg>
 
-        <svg class="svg-frame-bg" viewBox="0 0 400 700" preserveAspectRatio="none">
-          <rect x="10" y="10" width="380" height="680" fill="none" stroke="#0a424a" stroke-width="2" stroke-dasharray="6,3"/>
-          <rect x="16" y="16" width="368" height="668" fill="none" stroke="#c59b27" stroke-width="1"/>
-        </svg>
-
-        <div class="card-content" style="justify-content: center; gap: 16px;">
           <div>
-            <p style="font-size: 1.05rem; color: var(--teal-primary); line-height: 1.5; font-weight: 600;">
+            <p style="font-size: 1.05rem; color: var(--teal-primary); line-height: 1.5; font-weight: 600; padding: 0 10px;">
               "We would love to see you and celebrate these cherished moments together!"
             </p>
           </div>
 
           <div style="width: 80%; border-top: 1px dashed var(--gold-main); margin: 5px 0;"></div>
 
+          <!-- Bride's Parents -->
           <div>
             <span class="sub-heading">Bride's Parents</span>
             <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px;">
@@ -496,6 +483,7 @@
             </h3>
           </div>
 
+          <!-- Groom's Parents -->
           <div>
             <span class="sub-heading">Groom's Parents</span>
             <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px;">
@@ -503,7 +491,7 @@
             </h3>
           </div>
 
-          <div style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold-main); margin-top: 10px;">
+          <div style="font-family: 'Great Vibes', cursive; font-size: 2.3rem; color: var(--gold-main); margin-top: 10px;">
             Warm Regards & Blessings
           </div>
         </div>
@@ -513,22 +501,40 @@
   </div>
 
   <script>
+    // 1. Intro Overlay Dismissal
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video');
 
     function closeIntro() {
       overlay.classList.add('hidden');
+      if (video) {
+        video.pause();
+      }
     }
+
+    document.addEventListener('click', function() {
+      if (video && video.paused) {
+        video.play().catch(e => console.log('Autoplay prevented:', e));
+      }
+      if (video) {
+        video.muted = false;
+      }
+    }, { once: true });
 
     if (video) {
       video.addEventListener('ended', closeIntro);
-      video.addEventListener('error', closeIntro);
+      video.addEventListener('error', function() {
+        closeIntro();
+      });
     }
 
-    // Auto dismiss video after 6 seconds maximum as safeguard
-    setTimeout(closeIntro, 6000);
+    setTimeout(() => {
+      if (!overlay.classList.contains('hidden') && video && video.paused) {
+        closeIntro();
+      }
+    }, 6000);
 
-    // Countdown Logic
+    // 2. Countdown Timer
     const weddingDate = new Date("December 2, 2026 13:00:00").getTime();
 
     function updateCountdown() {
