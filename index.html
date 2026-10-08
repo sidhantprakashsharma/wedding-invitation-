@@ -15,9 +15,10 @@
       --teal-primary: #0a424a;
       --teal-dark: #062b31;
       --gold-main: #c59b27;
-      --paper-cream: #faf7f2;
+      --gold-light: #e0c9a0;
       --text-dark: #1c2b2e;
       --text-muted: #5a6d70;
+      --paper-cream: #faf7f2;
     }
 
     * {
@@ -28,86 +29,77 @@
 
     html, body {
       width: 100%;
-      height: 100%;
-      /* Warm neutral background highlighting the central card */
-      background: #121819;
+      min-height: 100vh;
+      /* Deep neutral backdrop to accentuate the central physical card */
+      background: #0f1617;
       font-family: 'Cormorant Garamond', serif;
       color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* Snap Scroll Container */
-    .snap-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
+      /* Passive natural scrolling enabled */
+      overflow-y: auto;
       scroll-behavior: smooth;
     }
 
-    .section-page {
-      height: 100vh;
+    /* Container for the naturally scrolling physical cards */
+    .cards-wrapper {
       width: 100%;
-      scroll-snap-align: start;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 20px 10px;
+      gap: 40px;
+      padding: 40px 15px;
     }
 
-    /* Realistic Card Aspect Ratio Container */
+    /* Strategy 1: Physical Card Structure */
     .wedding-card {
       position: relative;
       width: 100%;
-      max-width: 420px;
-      height: 100%;
-      max-height: 720px;
-      background: var(--paper-cream);
-      border-radius: 8px;
-      /* Realistic static shadow - no tilt or movement */
+      max-width: 440px;
+      min-height: 720px;
+      /* Cardstock texture background asset */
+      background: var(--paper-cream) url('cardstock_bg.jpg') center/cover no-repeat;
+      border-radius: 10px;
+      /* Realistic static drop shadow - depth without fake animation */
       box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.6),
-        0 2px 6px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(197, 155, 39, 0.3);
+        0 25px 50px -12px rgba(0, 0, 0, 0.75),
+        0 4px 12px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      padding: 2.5rem 1.8rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 2.5rem 1.8rem 1.8rem 1.8rem;
       text-align: center;
+      border: 12px solid var(--teal-primary);
+      outline: 2px solid var(--gold-main);
+      outline-offset: -5px;
     }
 
-    /* Static Elegant Border Accent */
+    /* Static Border Frame Overlay */
     .border-frame {
       position: absolute;
-      inset: 12px;
-      border: 1px solid var(--gold-main);
-      border-radius: 4px;
+      inset: 8px;
+      border: 1px stroke var(--gold-main);
       pointer-events: none;
+      opacity: 0.8;
     }
 
-    .border-frame::after {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border: 1px stroke var(--teal-primary);
-      opacity: 0.3;
-    }
-
-    /* Typography Styling */
+    /* Typography Hierarchy */
     .sub-heading {
       font-family: 'Marcellus', serif;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 2.5px;
       color: var(--text-muted);
     }
 
-    .names-title {
+    .script-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
+      font-size: 3.6rem;
       color: var(--gold-main);
       line-height: 1.1;
       font-weight: 400;
+      /* Static letterpress depth effect */
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     }
 
     .date-badge {
@@ -119,29 +111,40 @@
       border-bottom: 1px solid var(--gold-main);
       padding: 6px 18px;
       margin: 12px 0;
+      background: rgba(197, 155, 39, 0.04);
     }
 
-    /* Itinerary Scroll Area */
-    .itinerary-list {
+    .arch-icon {
+      width: 55px;
+      height: 55px;
+      fill: var(--gold-main);
+    }
+
+    /* Itinerary Section */
+    .itinerary-container {
       width: 100%;
-      max-height: 48vh;
-      overflow-y: auto;
-      margin: 10px 0;
-      padding-right: 4px;
+      margin: 15px 0;
     }
 
     .event-card {
       background: rgba(10, 66, 74, 0.04);
       border-left: 3px solid var(--gold-main);
-      border-radius: 3px;
+      border-radius: 4px;
       padding: 10px 12px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       text-align: left;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .event-title {
       font-family: 'Cinzel Decorative', serif;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--teal-primary);
       font-weight: 700;
     }
@@ -152,8 +155,8 @@
       color: #fff;
       background: var(--teal-primary);
       padding: 2px 8px;
-      border-radius: 10px;
-      float: right;
+      border-radius: 12px;
+      border: 1px solid var(--gold-main);
     }
 
     .event-meta {
@@ -162,13 +165,37 @@
       margin-top: 4px;
     }
 
-    .map-btn {
+    .venue-link {
       display: inline-block;
       margin-top: 4px;
       font-size: 0.72rem;
       color: var(--teal-primary);
       text-decoration: underline;
       font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn-action {
+      background: var(--teal-primary);
+      color: #fff;
+      border: 1px solid var(--gold-main);
+      padding: 9px 20px;
+      font-family: 'Marcellus', serif;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--gold-main);
+      color: var(--teal-dark);
     }
 
     .scroll-hint {
@@ -181,115 +208,145 @@
 </head>
 <body>
 
-  <div class="snap-container">
+  <div class="cards-wrapper">
 
-    <!-- PAGE 1: COVER -->
-    <section class="section-page">
-      <div class="wedding-card">
-        <div class="border-frame"></div>
+    <!-- CARD 1: HERO INVITATION -->
+    <div class="wedding-card" id="card-1">
+      <div class="border-frame"></div>
 
-        <svg viewBox="0 0 100 100" style="width: 50px; height: 50px; fill: var(--gold-main);">
-          <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 L10 85 L90 85 L90 90 L10 90 Z" />
-        </svg>
+      <svg class="arch-icon" viewBox="0 0 100 100">
+        <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 L10 85 L90 85 L90 90 L10 90 Z" />
+      </svg>
 
-        <span class="sub-heading">Together with their families</span>
+      <span class="sub-heading">Together with their families</span>
 
-        <div>
-          <h1 class="names-title">Sukriti</h1>
-          <div style="font-size: 1.2rem; color: var(--gold-main); margin: -4px 0;">&</div>
-          <h1 class="names-title">Sidhant</h1>
-        </div>
-
-        <div class="date-badge">
-          02 & 03 DEC 2026
-        </div>
-
-        <div style="font-size: 0.85rem; color: var(--text-muted);">
-          Lonavala & Khandala
-        </div>
-
-        <div class="scroll-hint">Scroll Down 🪶</div>
+      <div>
+        <h1 class="script-title">Sukriti</h1>
+        <div style="font-size: 1.2rem; color: var(--gold-main); margin: -4px 0;">&</div>
+        <h1 class="script-title">Sidhant</h1>
       </div>
-    </section>
 
-    <!-- PAGE 2: ITINERARY -->
-    <section class="section-page">
-      <div class="wedding-card">
-        <div class="border-frame"></div>
+      <div class="date-badge">
+        02 & 03 DEC 2026
+      </div>
 
-        <span class="sub-heading">Wedding Celebrations</span>
+      <div style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+        Lonavala & Khandala
+      </div>
 
-        <div class="itinerary-list">
-          <div class="event-card">
+      <div class="scroll-hint">Scroll Down 🪶</div>
+    </div>
+
+    <!-- CARD 2: ITINERARY -->
+    <div class="wedding-card" id="card-2">
+      <div class="border-frame"></div>
+
+      <span class="sub-heading" style="margin-top: 5px;">Wedding Celebrations</span>
+      <p style="font-size: 0.82rem; color: var(--text-muted); font-style: italic;">
+        We are overjoyed to invite you to celebrate our special moments!
+      </p>
+
+      <div class="itinerary-container">
+        <!-- Event 1 -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-title">Ganesh Poojan</span>
             <span class="event-time">1:00 PM</span>
-            <div class="event-title">Ganesh Poojan</div>
-            <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
           </div>
+          <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
+        </div>
 
-          <div class="event-card">
+        <!-- Event 2 -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-title">Mandap</span>
             <span class="event-time">2:00 PM</span>
-            <div class="event-title">Mandap</div>
-            <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
           </div>
+          <div class="event-meta">🗓️ 02 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
+        </div>
 
-          <div class="event-card">
+        <!-- Event 3 -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-title">Mamera</span>
             <span class="event-time">11:00 AM</span>
-            <div class="event-title">Mamera</div>
-            <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
           </div>
+          <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
+        </div>
 
-          <div class="event-card">
+        <!-- Event 4 -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-title">Barat</span>
             <span class="event-time">5:00 PM</span>
-            <div class="event-title">Barat</div>
-            <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="map-btn">View Map Location ↗</a>
           </div>
+          <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
+        </div>
 
-          <div class="event-card">
+        <!-- Event 5 -->
+        <div class="event-card">
+          <div class="event-header">
+            <span class="event-title">Food / Dinner</span>
+            <span class="event-time">9:00 PM</span>
+          </div>
+          <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Hotel Sapphire, Lonavala</div>
+          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
+        </div>
+
+        <!-- Event 6 -->
+        <div class="event-card" style="border-left-color: var(--teal-primary); background: rgba(10, 66, 74, 0.08);">
+          <div class="event-header">
+            <span class="event-title">Vivah (Pheras)</span>
             <span class="event-time">Late Night</span>
-            <div class="event-title">Vivah (Pheras)</div>
-            <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Amoravida, Khandala</div>
-            <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="map-btn">View Map Location ↗</a>
           </div>
-        </div>
-
-        <div class="scroll-hint">Scroll Down 🪶</div>
-      </div>
-    </section>
-
-    <!-- PAGE 3: BLESSINGS -->
-    <section class="section-page">
-      <div class="wedding-card" style="justify-content: center; gap: 24px;">
-        <div class="border-frame"></div>
-
-        <p style="font-size: 1.15rem; color: var(--teal-primary); line-height: 1.5; font-style: italic; padding: 0 10px;">
-          "We seek your presence, prayers, and blessings as we begin our new journey together!"
-        </p>
-
-        <div style="width: 70%; border-top: 1px stroke var(--gold-main); opacity: 0.6;"></div>
-
-        <div>
-          <span class="sub-heading">Bride's Parents</span>
-          <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
-            Sangita & Sunil Kumar Shukla
-          </h3>
-        </div>
-
-        <div>
-          <span class="sub-heading">Groom's Parents</span>
-          <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
-            Sadhana & Om Prakash Sharma
-          </h3>
-        </div>
-
-        <div style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--gold-main); margin-top: 10px;">
-          Warm Regards & Blessings
+          <div class="event-meta">🗓️ 03 Dec 2026 | 📍 Amoravida, Khandala</div>
+          <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="venue-link">View Map Location ↗</a>
         </div>
       </div>
-    </section>
+
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sukriti+%26+Sidhant+Wedding&dates=20261202T073000Z/20261204T020000Z&details=Wedding+celebrations+at+Hotel+Sapphire+Lonavala+%26+Amoravida+Khandala" target="_blank" class="btn-action">
+        🗓️ Add to Google Calendar
+      </a>
+    </div>
+
+    <!-- CARD 3: PARENTS & CLOSING -->
+    <div class="wedding-card" id="card-3" style="justify-content: center; gap: 20px;">
+      <div class="border-frame"></div>
+
+      <svg class="arch-icon" viewBox="0 0 100 100">
+        <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 L10 85 L90 85 L90 90 L10 90 Z" />
+      </svg>
+
+      <p style="font-size: 1.15rem; color: var(--teal-primary); line-height: 1.5; font-weight: 600; padding: 0 10px; font-style: italic;">
+        "We seek your presence, prayers, and blessings as we begin our new journey together!"
+      </p>
+
+      <div style="width: 75%; border-top: 1px stroke var(--gold-main); opacity: 0.6; margin: 4px 0;"></div>
+
+      <!-- Bride's Parents -->
+      <div>
+        <span class="sub-heading">Bride's Parents</span>
+        <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
+          Sangita & Sunil Kumar Shukla
+        </h3>
+      </div>
+
+      <!-- Groom's Parents -->
+      <div>
+        <span class="sub-heading">Groom's Parents</span>
+        <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
+          Sadhana & Om Prakash Sharma
+        </h3>
+      </div>
+
+      <div class="script-title" style="font-size: 2.6rem; margin-top: 10px;">
+        Warm Regards & Blessings
+      </div>
+    </div>
 
   </div>
 
