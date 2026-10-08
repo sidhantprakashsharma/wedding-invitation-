@@ -98,7 +98,7 @@
     }
 
     /* ==========================================
-       2. MAIN CONTAINER & CARD STYLING
+       2. CARDS CONTAINER LAYOUT
        ========================================== */
     .cards-wrapper {
       position: relative;
@@ -106,7 +106,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 70px;
+      gap: 80px;
       padding: 80px 15px;
     }
 
@@ -116,7 +116,7 @@
       z-index: 2;
       width: 100%;
       max-width: 440px;
-      min-height: 680px;
+      min-height: 700px;
       background-color: var(--card-cream);
       border-radius: 4px;
 
@@ -225,64 +225,118 @@
     }
 
     /* ==========================================
-       3. ITINERARY SPINES & EVENT ITEMS
+       3. ITINERARY SPINE & MOVING PEARL
        ========================================== */
-    .itinerary-container {
+    .itinerary-track {
       position: relative;
       width: 100%;
-      margin: 20px 0;
+      margin: 15px 0;
       display: flex;
       flex-direction: column;
-      gap: 25px;
-      padding-left: 36px;
+      gap: 32px;
+      padding-left: 54px;
     }
 
-    /* Left Vertical Gold Line Spine */
-    .itinerary-container::before {
-      content: '';
+    /* Left Vertical Gold Spine */
+    .vertical-spine {
       position: absolute;
-      left: 12px;
-      top: 10px;
-      bottom: 10px;
+      left: 18px;
+      top: 15px;
+      bottom: 15px;
       width: 1px;
       background: linear-gradient(
         to bottom,
         transparent,
-        var(--gold-antique) 15%,
-        var(--gold-antique) 85%,
+        var(--gold-antique) 10%,
+        var(--gold-antique) 90%,
         transparent
       );
     }
 
-    .event-tile {
+    /* Moving Pearl Node */
+    .pearl-node {
+      position: absolute;
+      left: 18px;
+      top: 20px;
+      transform: translate(-50%, -50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e8dec8 60%, var(--gold-antique) 100%);
+      box-shadow: 
+        0 0 10px rgba(212, 175, 55, 0.8),
+        0 0 2px rgba(0, 0, 0, 0.4);
+      z-index: 5;
+      transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .pearl-node::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-light);
+      opacity: 0.6;
+      animation: pearlPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pearlPulse {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 0.2; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .event-item {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       text-align: left;
+      cursor: pointer;
+      opacity: 0.35;
+      filter: blur(1.5px);
+      transform: scale(0.96);
+      transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
     }
 
-    /* Pearl Indicator Node */
-    .event-tile::before {
-      content: '';
+    .event-item.active {
+      opacity: 1;
+      filter: blur(0px);
+      transform: scale(1.04);
+    }
+
+    .event-dot {
       position: absolute;
-      left: -30px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
+      left: -36px;
+      top: 8px;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e8dec8 60%, var(--gold-antique) 100%);
-      box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+      background-color: var(--gold-antique);
       z-index: 3;
     }
 
     .event-name {
       font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       letter-spacing: 1.5px;
       color: var(--teal-primary);
       font-weight: 600;
       text-transform: uppercase;
+    }
+
+    .event-details-box {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+    }
+
+    .event-item.active .event-details-box {
+      max-height: 80px;
+      opacity: 1;
+      margin-top: 4px;
     }
 
     .event-datetime {
@@ -290,7 +344,6 @@
       font-size: 0.82rem;
       color: var(--gold-antique);
       letter-spacing: 1px;
-      margin-top: 2px;
     }
 
     .location-link {
@@ -298,7 +351,7 @@
       font-size: 0.82rem;
       color: var(--teal-primary);
       text-decoration: none;
-      margin-top: 4px;
+      margin-top: 3px;
       font-family: 'Marcellus', serif;
       letter-spacing: 0.5px;
       transition: color 0.2s ease;
@@ -343,7 +396,7 @@
     </div>
   </div>
 
-  <!-- 2. MAIN CARDS WRAPPER -->
+  <!-- 2. MAIN CARDS CONTAINER -->
   <div class="cards-wrapper">
 
     <!-- CARD 1: HERO -->
@@ -373,23 +426,32 @@
       <div class="monogram-stamp">— S & S —</div>
     </div>
 
-    <!-- CARD 2: ITINERARY - DAY 1 -->
-    <div class="wedding-card out-of-focus">
+    <!-- CARD 2: PROGRAM - DAY I -->
+    <div class="wedding-card out-of-focus" id="cardDay1">
       <div class="card-border"></div>
       <div class="crest-symbol">PROGRAM • DAY I</div>
       <span class="sub-heading">Wednesday, December 02, 2026</span>
 
-      <div class="itinerary-container">
-        <div class="event-tile">
-          <span class="event-name">Ganesh Poojan</span>
-          <span class="event-datetime">Wednesday • 1:00 PM</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+      <div class="itinerary-track">
+        <div class="vertical-spine"></div>
+        <div class="pearl-node" id="pearlDay1"></div>
+
+        <div class="event-item active" data-index="0">
+          <div class="event-dot"></div>
+          <div class="event-name">Ganesh Poojan</div>
+          <div class="event-details-box">
+            <div class="event-datetime">Wednesday • 1:00 PM</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          </div>
         </div>
 
-        <div class="event-tile" style="margin-top: 15px;">
-          <span class="event-name">Mandap</span>
-          <span class="event-datetime">Wednesday • 2:00 PM</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+        <div class="event-item" data-index="1">
+          <div class="event-dot"></div>
+          <div class="event-name">Mandap</div>
+          <div class="event-details-box">
+            <div class="event-datetime">Wednesday • 2:00 PM</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          </div>
         </div>
       </div>
 
@@ -398,35 +460,50 @@
       </a>
     </div>
 
-    <!-- CARD 3: ITINERARY - DAY 2 -->
-    <div class="wedding-card out-of-focus">
+    <!-- CARD 3: PROGRAM - DAY II -->
+    <div class="wedding-card out-of-focus" id="cardDay2">
       <div class="card-border"></div>
       <div class="crest-symbol">PROGRAM • DAY II</div>
       <span class="sub-heading">Thursday, December 03, 2026</span>
 
-      <div class="itinerary-container">
-        <div class="event-tile">
-          <span class="event-name">Mamera</span>
-          <span class="event-datetime">Thursday • 11:00 AM</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+      <div class="itinerary-track">
+        <div class="vertical-spine"></div>
+        <div class="pearl-node" id="pearlDay2"></div>
+
+        <div class="event-item active" data-index="0">
+          <div class="event-dot"></div>
+          <div class="event-name">Mamera</div>
+          <div class="event-details-box">
+            <div class="event-datetime">Thursday • 11:00 AM</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          </div>
         </div>
 
-        <div class="event-tile">
-          <span class="event-name">Barat</span>
-          <span class="event-datetime">Thursday • 5:00 PM</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+        <div class="event-item" data-index="1">
+          <div class="event-dot"></div>
+          <div class="event-name">Barat</div>
+          <div class="event-details-box">
+            <div class="event-datetime">Thursday • 5:00 PM</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          </div>
         </div>
 
-        <div class="event-tile">
-          <span class="event-name">Dinner</span>
-          <span class="event-datetime">Thursday • 9:00 PM</span>
-          <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+        <div class="event-item" data-index="2">
+          <div class="event-dot"></div>
+          <div class="event-name">Dinner</div>
+          <div class="event-details-box">
+            <div class="event-datetime">Thursday • 9:00 PM</div>
+            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          </div>
         </div>
 
-        <div class="event-tile">
-          <span class="event-name" style="color: var(--gold-antique);">Vivah (Pheras)</span>
-          <span class="event-datetime">Thursday • Late Night</span>
-          <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="location-link">Amoravida, Khandala ↗</a>
+        <div class="event-item" data-index="3">
+          <div class="event-dot"></div>
+          <div class="event-name" style="color: var(--gold-antique);">Vivah (Pheras)</div>
+          <div class="event-details-box">
+            <div class="event-datetime">Thursday • Late Night</div>
+            <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="location-link">Amoravida, Khandala ↗</a>
+          </div>
         </div>
       </div>
 
@@ -468,7 +545,9 @@
   </div>
 
   <script>
+    // ==========================================
     // 1. INTRO OVERLAY LOGIC
+    // ==========================================
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video');
 
@@ -495,15 +574,11 @@
       }
     }, 6000);
 
+    // ==========================================
     // 2. SOFT DEPTH-BLUR SCROLL OBSERVER
+    // ==========================================
     const cards = document.querySelectorAll('.wedding-card');
     
-    const observerOptions = {
-      root: null,
-      rootMargin: '-15% 0px -15% 0px',
-      threshold: 0.4
-    };
-
     const cardObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -514,9 +589,69 @@
           entry.target.classList.add('out-of-focus');
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.4 });
 
     cards.forEach(card => cardObserver.observe(card));
+
+    // ==========================================
+    // 3. DYNAMIC PEARL & EVENT FOCUS CONTROLLER
+    // ==========================================
+    function setupItineraryCard(cardId, pearlId) {
+      const card = document.getElementById(cardId);
+      const pearl = document.getElementById(pearlId);
+      if (!card || !pearl) return;
+
+      const items = card.querySelectorAll('.event-item');
+
+      function syncPearlOnScroll() {
+        const viewportCenter = window.innerHeight / 2;
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        items.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const itemCenter = rect.top + rect.height / 2;
+          const distance = Math.abs(viewportCenter - itemCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        // Align Pearl position and update active item
+        items.forEach((item, index) => {
+          if (index === closestIndex) {
+            item.classList.add('active');
+            const targetDot = item.querySelector('.event-dot');
+            if (targetDot) {
+              const trackRect = card.querySelector('.itinerary-track').getBoundingClientRect();
+              const dotRect = targetDot.getBoundingClientRect();
+              const relativeTop = (dotRect.top + dotRect.height / 2) - trackRect.top;
+              pearl.style.top = `${relativeTop}px`;
+            }
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', syncPearlOnScroll, { passive: true });
+      window.addEventListener('resize', syncPearlOnScroll);
+      
+      // Tap handler to focus item directly
+      items.forEach((item) => {
+        item.addEventListener('click', () => {
+          item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      });
+
+      // Initial position calculate
+      syncPearlOnScroll();
+    }
+
+    setupItineraryCard('cardDay1', 'pearlDay1');
+    setupItineraryCard('cardDay2', 'pearlDay2');
   </script>
 </body>
 </html>
