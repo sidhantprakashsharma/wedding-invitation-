@@ -8,16 +8,19 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Great+Vibes&family=Marcellus&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Updated fonts for the regal theme -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Great+Vibes&family=Cormorant+Garamond:wght@400;600;700&family=Marcellus&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --teal-primary: #0a424a;
-      --teal-dark: #062b31;
-      --gold-main: #c59b27;
-      --gold-light: #fbeea1;
-      --text-dark: #1c2b2e;
-      --text-muted: #5a6d70;
+      /* NEW THEME COLORS */
+      --teal-primary: #006B7A; /* Deep Regal Teal */
+      --teal-dark: #004F5C;
+      --gold-main: #C9A05E; /* Metallic Gold */
+      --gold-light: #E0C9A0;
+      --paper-cream: #F9F7F2; /* Premium Cardstock Cream */
+      --text-dark: #1A3036;
+      --text-muted: #5F747A;
     }
 
     * {
@@ -29,9 +32,9 @@
     html, body {
       width: 100%;
       height: 100%;
-      /* Uses table_bg.jpg as the background for the entire page */
-      background: var(--teal-dark) url('table_bg.jpg') center/cover no-repeat fixed;
-      font-family: 'Marcellus', serif;
+      /* Use silk_backdrop.jpg as the new body background */
+      background: #DED6CA url('silk_backdrop.jpg') center/cover no-repeat fixed;
+      font-family: 'Cormorant Garamond', serif; /* Refined main font */
       color: var(--text-dark);
       overflow-x: hidden;
     }
@@ -58,7 +61,7 @@
     }
 
     /* ==========================================
-       INTRO VIDEO OVERLAY & CONTROLS
+       INTRO VIDEO OVERLAY (Retained)
        ========================================== */
     #intro-overlay {
       position: fixed;
@@ -98,7 +101,7 @@
       color: #fff;
       font-size: 0.85rem;
       letter-spacing: 2px;
-      background: rgba(10, 66, 74, 0.85);
+      background: rgba(0, 79, 92, 0.85); /* Use theme teal */
       border: 1px solid var(--gold-main);
       padding: 12px 28px;
       border-radius: 30px;
@@ -116,7 +119,7 @@
     }
 
     /* ==========================================
-       ROYAL CARD FRAME USING UPLOADED TEXTURES
+       REGAL INDO-ISLAMIC FRAME & LAYOUT
        ========================================== */
     .royal-border-frame {
       position: relative;
@@ -124,28 +127,25 @@
       max-width: 480px;
       height: 100%;
       max-height: 820px;
-      /* Uses paper_texture.jpg as cardstock background */
-      background: #faf7f2 url('paper_texture.jpg') center/cover no-repeat;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      /* Main Card Background: Cream paper textured */
+      background-color: var(--paper-cream);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       padding: 2.2rem 1.8rem;
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
-      border: 8px solid var(--teal-primary);
-      outline: 2px solid var(--gold-main);
-      outline-offset: -5px;
+      /* The complex geometric border pattern is applied here */
+      border: 18px solid transparent;
+      border-image: url('ornate_frame.png') 40% round;
     }
 
-    /* Frame Arch overlay image */
+    /* The new layout uses the arch pattern *within* the ornate_frame.png,
+       so no separate frame-overlay image is needed here. */
     .frame-overlay {
-      position: absolute;
-      inset: 0;
-      background: url('frame_arch.png') center/100% 100% no-repeat;
-      pointer-events: none;
-      z-index: 2;
+      display: none;
     }
 
     .card-content {
@@ -159,19 +159,13 @@
       justify-content: space-between;
     }
 
-    /* Gold Foil Text using gold_foil.jpg texture */
-    .gold-foil-text {
-      background: url('gold_foil.jpg') center/cover repeat;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 700;
-      filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.15));
-    }
-
+    /* Simplified, clean typography replaces the heavy gold-foil texture */
     .script-title {
       font-family: 'Great Vibes', cursive;
       font-size: 3.5rem;
       line-height: 1.1;
+      color: var(--gold-main); /* Simple elegant gold */
+      font-weight: 400;
       padding: 0 5px;
     }
 
@@ -189,19 +183,20 @@
     .sub-heading {
       font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 2.5px;
       color: var(--text-muted);
+      font-family: 'Marcellus', serif;
     }
 
-    .arch-svg {
-      width: 65px;
-      height: 65px;
-      fill: var(--gold-main);
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    /* Replace previous arch SVG with the new pavilion icon */
+    .pavilion-icon {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
     }
 
     /* ==========================================
-       ITINERARY TIMELINE (PAGE 2)
+       ITINERARY TIMELINE (PAGE 2) (RETAINED & STYLED)
        ========================================== */
     .itinerary-scroll-container {
       width: 100%;
@@ -212,7 +207,7 @@
     }
 
     .event-card {
-      background: rgba(10, 66, 74, 0.04);
+      background: rgba(0, 107, 122, 0.04); /* Light teal tint */
       border-left: 3px solid var(--gold-main);
       border-radius: 4px;
       padding: 10px 12px;
@@ -236,7 +231,7 @@
     .event-time {
       font-size: 0.75rem;
       font-weight: 600;
-      color: #fff;
+      color: var(--paper-cream);
       background: var(--teal-primary);
       padding: 2px 8px;
       border-radius: 12px;
@@ -259,7 +254,7 @@
     }
 
     /* ==========================================
-       COUNTDOWN & BUTTONS
+       COUNTDOWN & BUTTONS (RETAINED)
        ========================================== */
     #timer {
       display: flex;
@@ -317,6 +312,7 @@
       letter-spacing: 1px;
       color: var(--teal-primary);
       animation: bounce 2s infinite;
+      font-family: 'Marcellus', serif;
     }
 
     @keyframes bounce {
@@ -328,7 +324,7 @@
 </head>
 <body>
 
-  <!-- 1. INTRO VIDEO OVERLAY -->
+  <!-- 1. INTRO VIDEO OVERLAY (Retained) -->
   <div id="intro-overlay">
     <video id="intro-video" playsinline autoplay muted>
       <source src="wedding_intro.mp4" type="video/mp4">
@@ -341,21 +337,20 @@
   <!-- 2. MAIN INVITATION (SNAP SCROLL) -->
   <div class="snap-container">
 
-    <!-- PAGE 1: HERO COVER -->
+    <!-- PAGE 1: HERO COVER (Retained Content) -->
     <section class="section-page" id="page-1">
       <div class="royal-border-frame">
         <div class="frame-overlay"></div>
         <div class="card-content">
-          <svg class="arch-svg" viewBox="0 0 100 100">
-            <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 M10 85 L90 85 L90 90 L10 90 Z" />
-          </svg>
+          <!-- New Pavilion Icon replaces SVG -->
+          <img src="pavilion_icon.png" alt="Regal Pavilion" class="pavilion-icon">
 
           <span class="sub-heading">Together with their families</span>
 
           <div>
-            <h1 class="script-title gold-foil-text">Sukriti</h1>
+            <h1 class="script-title">Sukriti</h1>
             <div style="font-size: 1.3rem; color: var(--gold-main); margin: -5px 0;">&</div>
-            <h1 class="script-title gold-foil-text">Sidhant</h1>
+            <h1 class="script-title">Sidhant</h1>
           </div>
 
           <div class="date-badge">
@@ -377,7 +372,7 @@
       </div>
     </section>
 
-    <!-- PAGE 2: ITINERARY -->
+    <!-- PAGE 2: ITINERARY (Retained Content) -->
     <section class="section-page" id="page-2">
       <div class="royal-border-frame">
         <div class="frame-overlay"></div>
@@ -438,8 +433,8 @@
               <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="venue-link">View Map Location ↗</a>
             </div>
 
-            <!-- Event 6 -->
-            <div class="event-card" style="border-left-color: var(--teal-primary);">
+            <!-- Event 6 (Highlighted Event) -->
+            <div class="event-card" style="border-left-color: var(--teal-primary); background-color: rgba(0, 107, 122, 0.08);">
               <div class="event-header">
                 <span class="event-title">Vivah (Pheras)</span>
                 <span class="event-time">Late Night</span>
@@ -458,17 +453,16 @@
       </div>
     </section>
 
-    <!-- PAGE 3: PARENTS & CLOSING -->
+    <!-- PAGE 3: PARENTS & CLOSING (Retained Content) -->
     <section class="section-page" id="page-3">
       <div class="royal-border-frame">
         <div class="frame-overlay"></div>
         <div class="card-content" style="justify-content: center; gap: 20px;">
-          <svg class="arch-svg" viewBox="0 0 100 100">
-            <path d="M50 10 C30 25, 20 35, 15 50 L85 50 C80 35, 70 25, 50 10 Z M15 55 L85 55 L85 60 L15 60 Z M25 60 L25 85 M40 60 L40 85 M60 60 L60 85 M75 60 L75 85 M10 85 L90 85 L90 90 L10 90 Z" />
-          </svg>
+          <!-- New Pavilion Icon -->
+          <img src="pavilion_icon.png" alt="Regal Pavilion" class="pavilion-icon" style="width: 60px;">
 
           <div>
-            <p style="font-size: 1.05rem; color: var(--teal-primary); line-height: 1.5; font-weight: 600; padding: 0 10px;">
+            <p style="font-size: 1.2rem; color: var(--teal-primary); line-height: 1.6; font-weight: 600; padding: 0 10px; font-style: italic;">
               "We would love to see you and celebrate these cherished moments together!"
             </p>
           </div>
@@ -478,7 +472,7 @@
           <!-- Bride's Parents -->
           <div>
             <span class="sub-heading">Bride's Parents</span>
-            <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px;">
+            <h3 style="font-size: 1.15rem; color: var(--teal-primary); margin-top: 4px; font-weight: 700;">
               Sangita & Sunil Kumar Shukla
             </h3>
           </div>
@@ -486,12 +480,12 @@
           <!-- Groom's Parents -->
           <div>
             <span class="sub-heading">Groom's Parents</span>
-            <h3 style="font-size: 1.1rem; color: var(--teal-primary); margin-top: 4px;">
+            <h3 style="font-size: 1.15rem; color: var(--teal-primary); margin-top: 4px; font-weight: 700;">
               Sadhana & Om Prakash Sharma
             </h3>
           </div>
 
-          <div style="font-family: 'Great Vibes', cursive; font-size: 2.3rem; color: var(--gold-main); margin-top: 10px;">
+          <div style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--gold-main); margin-top: 15px;">
             Warm Regards & Blessings
           </div>
         </div>
@@ -501,7 +495,7 @@
   </div>
 
   <script>
-    // 1. Intro Overlay Dismissal
+    // 1. Intro Overlay Dismissal (Retained Logic)
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video');
 
@@ -534,7 +528,7 @@
       }
     }, 6000);
 
-    // 2. Countdown Timer
+    // 2. Countdown Timer (Retained Logic)
     const weddingDate = new Date("December 2, 2026 13:00:00").getTime();
 
     function updateCountdown() {
@@ -542,7 +536,7 @@
       const distance = weddingDate - now;
 
       if (distance < 0) {
-        document.getElementById("timer").innerHTML = "<div style='color: var(--teal-primary); font-weight: bold;'>The Celebrations Have Begun! 🎉</div>";
+        document.getElementById("timer").innerHTML = "<div style='color: var(--teal-primary); font-weight: bold; font-size: 1.2rem;'>The Celebrations Have Begun! 🎉</div>";
         return;
       }
 
