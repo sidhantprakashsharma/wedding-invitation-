@@ -6,23 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>शुभ विवाह निमंत्रण | सुकृति एवं सिद्धांत</title>
 
-  <!-- Google Fonts for Devanagari & Regal Typography -->
+  <!-- Google Fonts for Devanagari Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark-radial-1: #062b32;
-      --bg-dark-radial-2: #021417;
-      --peacock-teal: #0a4f58;
-      --teal-deep: #052a2f;
-      --gold-antique: #947128;
-      --gold-deep: #704d0d;
-      --gold-bright: #c39838;
-      --gold-light: #e6cb7a;
-      --text-dark: #1c292c;
-      --text-muted: #536266;
+      --bg-cream-light: #f7f3ed;
+      --bg-cream-dark: #e5ddcf;
+      --peacock-teal: #08434a;
+      --teal-deep: #032328;
+      --gold-antique: #8a6218;
+      --gold-deep: #684a0d;
+      --gold-bright: #bd9230;
+      --gold-light: #e0ca86;
+      --text-dark: #1e2b2d;
+      --text-muted: #526366;
 
       --font-royal: 'Rozha One', 'Yatra One', serif;
       --font-accent: 'Yatra One', 'Rozha One', cursive;
@@ -39,7 +39,7 @@
     html, body {
       width: 100%;
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 25%, var(--bg-dark-radial-1) 0%, var(--bg-dark-radial-2) 85%);
+      background: radial-gradient(circle at 50% 25%, var(--bg-cream-light) 0%, var(--bg-cream-dark) 90%);
       background-attachment: fixed;
       font-family: var(--font-serif);
       color: var(--text-dark);
@@ -48,13 +48,13 @@
       line-height: 1.5;
     }
 
-    /* Ambient texture overlay */
+    /* Subtly textured woven paper pattern overlay */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background-image: radial-gradient(rgba(195, 152, 56, 0.05) 1px, transparent 0);
-      background-size: 24px 24px;
+      background-image: radial-gradient(rgba(138, 98, 24, 0.08) 1px, transparent 0);
+      background-size: 20px 20px;
       pointer-events: none;
       z-index: 1;
     }
@@ -62,7 +62,7 @@
     #intro-overlay {
       position: fixed;
       inset: 0;
-      background-color: #000;
+      background-color: #031c20;
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -96,12 +96,12 @@
     .btn-enter {
       color: #ffffff;
       font-size: 1.05rem;
-      background: rgba(10, 79, 88, 0.92);
+      background: rgba(8, 67, 74, 0.94);
       border: 1px solid var(--gold-bright);
       padding: 13px 36px;
       border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.65), inset 0 0 10px rgba(230, 203, 122, 0.3);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.5), inset 0 0 10px rgba(224, 202, 134, 0.3);
       backdrop-filter: blur(8px);
       font-family: var(--font-sans);
       font-weight: 600;
@@ -113,20 +113,19 @@
 
     .btn-enter:hover {
       background: var(--gold-antique);
-      color: var(--teal-deep);
+      color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(195, 152, 56, 0.4);
+      box-shadow: 0 8px 30px rgba(138, 98, 24, 0.4);
     }
 
-    /* Ambient Audio Toggle Button */
     .audio-control-btn {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 900;
-      background: rgba(5, 42, 47, 0.85);
+      background: rgba(247, 243, 237, 0.9);
       border: 1px solid var(--gold-bright);
-      color: var(--gold-light);
+      color: var(--gold-deep);
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -134,7 +133,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 18px rgba(8, 67, 74, 0.18);
       backdrop-filter: blur(6px);
       transition: all 0.3s ease;
     }
@@ -142,6 +141,7 @@
     .audio-control-btn:hover {
       transform: scale(1.08);
       background: var(--peacock-teal);
+      color: #ffffff;
     }
 
     .cards-wrapper {
@@ -151,36 +151,37 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 70px;
+      gap: 75px;
       padding: 60px 15px 90px 15px;
     }
 
-    /* Card background frame using card_background.jpg */
+    /* Wedding Card with card_background.jpg background image */
     .wedding-card {
       position: relative;
       z-index: 2;
       width: 100%;
       max-width: 440px;
-      aspect-ratio: 1 / 1.38;
+      aspect-ratio: 1 / 1.36;
       min-height: 610px;
 
-      background: url('card_background.jpg') no-repeat center / 100% 100%;
-      border-radius: 8px;
+      /* Uses card_background.jpg with fallback color */
+      background: url('card_background.jpg') no-repeat center / 100% 100%, #faf6f0;
+      border-radius: 6px;
 
       box-shadow: 
-        0 22px 45px rgba(0, 0, 0, 0.65),
-        0 8px 20px rgba(0, 0, 0, 0.35);
+        0 22px 48px rgba(8, 67, 74, 0.22),
+        0 8px 20px rgba(0, 0, 0, 0.08);
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
 
-      /* Card content padded inside the arch without overlapping the ornate border */
-      padding: 22% 14.5% 9.5% 14.5%;
+      /* Custom padding ensures content stays inside the white Jharokha arch */
+      padding: 26% 16% 11% 16%;
       text-align: center;
 
-      /* Focus Depth Blur Transitions */
+      /* Depth-Blur Transitions on Scroll */
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                   opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                   filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -193,8 +194,8 @@
     }
 
     .wedding-card.out-of-focus {
-      opacity: 0.35;
-      filter: blur(3.5px);
+      opacity: 0.38;
+      filter: blur(3px);
       transform: scale(0.95);
     }
 
@@ -268,8 +269,8 @@
       font-family: var(--font-royal);
       font-size: 0.95rem;
       color: var(--peacock-teal);
-      border-top: 1px solid rgba(148, 113, 40, 0.4);
-      border-bottom: 1px solid rgba(148, 113, 40, 0.4);
+      border-top: 1px solid rgba(138, 98, 24, 0.4);
+      border-bottom: 1px solid rgba(138, 98, 24, 0.4);
       padding: 4px 18px;
       margin: 6px 0;
       white-space: nowrap;
@@ -332,7 +333,7 @@
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ede3ce 60%, var(--gold-antique) 100%);
       box-shadow: 
-        0 0 6px rgba(148, 113, 40, 0.6),
+        0 0 6px rgba(138, 98, 24, 0.6),
         0 0 2px rgba(0, 0, 0, 0.4);
       z-index: 5;
       transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -442,17 +443,16 @@
       text-decoration: none;
       display: inline-block;
       transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 3px 10px rgba(8, 67, 74, 0.15);
       margin-bottom: 2px;
     }
 
     .btn-action:hover {
       background: var(--gold-antique);
-      color: var(--teal-deep);
+      color: #ffffff;
       transform: translateY(-1px);
     }
 
-    /* Blessings & Family Info Styling */
     .blessing-quote {
       font-size: 0.85rem;
       color: var(--peacock-teal);
@@ -481,7 +481,7 @@
       .wedding-card {
         max-width: 100%;
         min-height: 570px;
-        padding: 23% 13.5% 9% 13.5%;
+        padding: 27% 14% 10% 14%;
       }
       .couple-name {
         font-size: 2.2rem;
@@ -497,7 +497,7 @@
 </head>
 <body>
 
-  <!-- Ambient Audio Controls -->
+  <!-- Floating Audio Controls -->
   <button class="audio-control-btn" id="audioToggleBtn" title="संगीत चालू / बंद" onclick="toggleAudio()">
     <svg id="audioIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -507,12 +507,12 @@
 
   <!-- 1. INTRO VIDEO OVERLAY -->
   <div id="intro-overlay">
-    <video id="intro-video" playsinline autoplay muted loop>
+    <video id="intro-video" playsinline autoplay muted loop poster="card_background.jpg">
       <source src="wedding_intro.mp4" type="video/mp4">
     </video>
     <div class="overlay-controls">
       <button class="btn-enter" onclick="closeIntro()">
-        <span>॥ निमंत्रण पत्र खोलें ॥</span>
+        <span>॥ निमंत्रण पत्र देखें ॥</span>
       </button>
     </div>
   </div>
@@ -717,8 +717,8 @@
           audioCtx.resume();
         }
 
-        const rootFreq = 219.82; // Sa (A3)
-        const freqs = [rootFreq, rootFreq * 1.498, rootFreq * 2]; // Sa - Pa - Sa octave
+        const rootFreq = 219.82; // Indian Classical Sa tone
+        const freqs = [rootFreq, rootFreq * 1.498, rootFreq * 2]; // Sa-Pa drone
 
         freqs.forEach((f, idx) => {
           const osc = audioCtx.createOscillator();
@@ -737,7 +737,7 @@
         isPlayingAudio = true;
         updateAudioIcon();
       } catch (e) {
-        console.log('Audio initialization skipped:', e);
+        console.log('Audio init status:', e);
       }
     }
 
@@ -761,16 +761,18 @@
       if (!btn) return;
       if (isPlayingAudio) {
         btn.style.borderColor = 'var(--gold-bright)';
-        btn.style.color = 'var(--gold-light)';
+        btn.style.background = 'var(--peacock-teal)';
+        btn.style.color = '#ffffff';
       } else {
-        btn.style.borderColor = 'var(--text-muted)';
-        btn.style.color = 'var(--text-muted)';
+        btn.style.borderColor = 'var(--gold-bright)';
+        btn.style.background = 'rgba(247, 243, 237, 0.9)';
+        btn.style.color = 'var(--gold-deep)';
       }
     }
 
     document.addEventListener('click', function() {
       if (video && video.paused) {
-        video.play().catch(e => console.log('Autoplay prevented:', e));
+        video.play().catch(e => console.log('Autoplay handled:', e));
       }
       if (video) video.muted = false;
     }, { once: true });
@@ -780,11 +782,12 @@
       video.addEventListener('error', closeIntro);
     }
 
+    // Safety timeout: If intro video fails or doesn't start, gracefully reveal content
     setTimeout(() => {
       if (overlay && !overlay.classList.contains('hidden') && video && video.paused) {
         closeIntro();
       }
-    }, 6000);
+    }, 5000);
 
     const cards = document.querySelectorAll('.wedding-card');
     
