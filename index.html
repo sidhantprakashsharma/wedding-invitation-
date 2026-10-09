@@ -32,7 +32,7 @@
       overflow-x: hidden;
     }
 
-    /* Video Intro Overlay */
+    /* Video Intro Overlay - Perfectly Contained Frame */
     #intro-overlay {
       position: fixed;
       top: 0;
@@ -46,6 +46,7 @@
       justify-content: center;
       align-items: center;
       transition: opacity 0.8s ease, visibility 0.8s ease;
+      overflow: hidden;
     }
 
     #intro-overlay.fade-out {
@@ -56,32 +57,33 @@
 
     .video-container {
       position: relative;
-      width: 100%;
-      max-width: 480px;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     #intro-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain; /* Fixes video going out of frame */
     }
 
     .skip-btn {
       position: absolute;
-      bottom: 40px;
-      padding: 12px 28px;
+      bottom: 30px;
+      padding: 10px 24px;
       background: rgba(255, 255, 255, 0.92);
       color: #0f3838;
       font-family: 'Rozha One', serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       border: 1px solid #c5a059;
       border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       backdrop-filter: blur(4px);
       transition: transform 0.2s ease, background 0.2s ease;
       z-index: 10000;
@@ -102,15 +104,13 @@
       max-width: 420px;
     }
 
-    /* 9:16 Aspect Ratio Wedding Card Frame */
+    /* 9:16 Smartphone Frame */
     .wedding-card {
       position: relative;
       width: calc(100vw - 24px);
       max-width: 390px;
-      /* Precise 9:16 Aspect Ratio for Smartphone Display */
       aspect-ratio: 9 / 16;
       
-      /* Multi-filename CSS Fallback for background frame */
       background-image: url('card_background.jpg'), url('card_%20background.jpg'), url('card_ background.jpg');
       background-position: center center;
       background-size: 100% 100%;
@@ -119,74 +119,58 @@
       border-radius: 8px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
 
-      /* Inner Arch Padding so Devanagari text sits cleanly inside white Jharokha */
-      padding: 38% 18% 14% 18%;
+      /* Inner Padding keeps text inside white Jharokha arch */
+      padding: 37% 17% 13% 17%;
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       text-align: center;
-      
-      /* Scroll Depth Blur Transition */
-      transition: filter 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
-      filter: blur(0px);
-      opacity: 1;
-      transform: scale(1);
     }
 
-    .wedding-card.out-of-focus {
-      filter: blur(3px);
-      opacity: 0.65;
-      transform: scale(0.97);
-    }
-
-    /* Inner Content Elements */
+    /* Typography & Content Structure */
     .card-top-heading {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       letter-spacing: 0.5px;
-      margin-bottom: 2px;
     }
 
     .card-title {
       font-family: 'Yatra One', cursive;
       color: #0f3838;
-      font-size: 1.35rem;
-      line-height: 1.25;
-      margin-bottom: 4px;
+      font-size: 1.22rem;
+      line-height: 1.2;
     }
 
     .names-heading {
       font-family: 'Rozha One', serif;
       color: #0f3838;
-      font-size: 1.65rem;
-      line-height: 1.2;
-      margin: 4px 0;
+      font-size: 1.55rem;
+      line-height: 1.15;
     }
 
     .connector-text {
       font-family: 'Noto Serif Devanagari', serif;
       color: #926d27;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
     }
 
     .invitation-quote {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #3d332e;
-      line-height: 1.4;
-      margin: 6px 0;
+      line-height: 1.35;
+      margin: 2px 0;
     }
 
     .event-details-box {
       width: 100%;
       border-top: 1px solid rgba(197, 160, 89, 0.4);
       border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-      padding: 6px 0;
-      margin: 4px 0;
+      padding: 5px 0;
       background: rgba(255, 255, 255, 0.35);
       border-radius: 4px;
     }
@@ -195,33 +179,31 @@
       font-family: 'Noto Serif Devanagari', serif;
       font-weight: 700;
       color: #0f3838;
-      font-size: 0.85rem;
-      margin-bottom: 2px;
+      font-size: 0.82rem;
     }
 
     .event-venue {
       font-family: 'Anek Devanagari', sans-serif;
       font-weight: 600;
       color: #52423a;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
     }
 
     .card-bottom-stamp {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 1px;
     }
 
-    /* Program Itinerary Styling */
+    /* Itinerary Timeline Styles */
     .program-date-header {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: #926d27;
-      margin-bottom: 8px;
       border-bottom: 1px dashed #c5a059;
-      padding-bottom: 3px;
+      padding-bottom: 2px;
       width: 100%;
     }
 
@@ -230,13 +212,13 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin: 4px 0;
+      gap: 10px;
+      margin: 2px 0;
     }
 
     .timeline-line {
       position: absolute;
-      left: 14px;
+      left: 12px;
       top: 6px;
       bottom: 6px;
       width: 2px;
@@ -245,81 +227,83 @@
 
     .pearl-node {
       position: absolute;
-      left: 9px;
+      left: 7px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: #ffffff;
       border: 2.5px solid #0f3838;
-      box-shadow: 0 0 6px rgba(15, 56, 56, 0.4);
-      transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      box-shadow: 0 0 6px rgba(15, 56, 56, 0.5);
+      transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
       z-index: 2;
     }
 
     .timeline-item {
       position: relative;
-      padding-left: 32px;
+      padding-left: 28px;
       text-align: left;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .timeline-item.active-event .event-name {
+      color: #926d27;
+      transform: scale(1.02);
     }
 
     .event-name {
       font-family: 'Rozha One', serif;
       color: #0f3838;
-      font-size: 0.95rem;
-      line-height: 1.2;
+      font-size: 0.86rem;
+      line-height: 1.15;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
 
     .event-time {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #926d27;
       font-weight: 600;
     }
 
     .map-link {
       display: inline-block;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: #0f3838;
       text-decoration: none;
       font-weight: 600;
-      margin-top: 2px;
+      margin-top: 1px;
       border-bottom: 1px dotted #0f3838;
     }
 
-    /* Host Card Specific */
+    /* Blessings & Host Card */
     .blessing-quote {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-style: italic;
       color: #4a3c35;
       line-height: 1.35;
-      margin: 6px 0;
     }
 
     .host-section {
       width: 100%;
-      margin: 6px 0;
     }
 
     .host-title {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.82rem;
-      margin-bottom: 2px;
+      font-size: 0.78rem;
     }
 
     .host-names {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #0f3838;
     }
 
-    /* Utility */
     .decorative-divider {
       color: #c5a059;
-      font-size: 0.75rem;
-      margin: 2px 0;
+      font-size: 0.7rem;
     }
   </style>
 </head>
@@ -336,7 +320,6 @@
     </div>
   </div>
 
-  <!-- Cards Container -->
   <div class="cards-container">
 
     <!-- CARD 1: HERO / INVITATION -->
@@ -369,15 +352,15 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day1" style="top: 8px;"></div>
+        <div class="pearl-node" id="pearl-day1" style="top: 4px;"></div>
         
-        <div class="timeline-item" onclick="movePearl('pearl-day1', 8)">
+        <div class="timeline-item active-event" data-pearl-pos="4" id="d1-item-1">
           <div class="event-name">गणेश पूजन</div>
           <div class="event-time">अपराह्न 1:00 बजे</div>
           <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर, लोनावला</a>
         </div>
         
-        <div class="timeline-item" onclick="movePearl('pearl-day1', 65)">
+        <div class="timeline-item" data-pearl-pos="60" id="d1-item-2">
           <div class="event-name">मंडप स्थापन</div>
           <div class="event-time">अपराह्न 2:00 बजे</div>
           <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर, लोनावला</a>
@@ -395,20 +378,22 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day2" style="top: 4px;"></div>
+        <div class="pearl-node" id="pearl-day2" style="top: 2px;"></div>
         
-        <div class="timeline-item" onclick="movePearl('pearl-day2', 4)">
+        <div class="timeline-item active-event" data-pearl-pos="2" id="d2-item-1">
           <div class="event-name">मामेरा (भात)</div>
           <div class="event-time">प्रातः 11:00 बजे</div>
+          <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर, लोनावला</a>
         </div>
         
-        <div class="timeline-item" onclick="movePearl('pearl-day2', 42)">
+        <div class="timeline-item" data-pearl-pos="38" id="d2-item-2">
           <div class="event-name">बारात प्रस्थान</div>
           <div class="event-time">सायं 5:00 बजे</div>
+          <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर से अमोराविडा</a>
         </div>
 
-        <div class="timeline-item" onclick="movePearl('pearl-day2', 80)">
-          <div class="event-name">रात्रिभोज एवं पाणिग्रहण</div>
+        <div class="timeline-item" data-pearl-pos="74" id="d2-item-3">
+          <div class="event-name">रात्रिभोज एवं विवाह (फेरे)</div>
           <div class="event-time">रात्रि 9:00 बजे से (फेरे देर रात्रि)</div>
           <a class="map-link" href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank">📍 अमोराविडा, खंडाला</a>
         </div>
@@ -443,7 +428,7 @@
   </div>
 
   <script>
-    // 1. Intro Video Behavior (Auto-advance on finish or click)
+    // 1. Non-Looping Intro Video dismiss logic
     const introOverlay = document.getElementById('intro-overlay');
     const introVideo = document.getElementById('intro-video');
 
@@ -457,46 +442,50 @@
     }
 
     if (introVideo) {
-      // Auto advance when video naturally ends
       introVideo.addEventListener('ended', dismissIntro);
-      
-      // Safety fail-safe in case video fails or autoplay is restricted
       introVideo.addEventListener('error', dismissIntro);
-      setTimeout(() => {
-        if (!introVideo.currentTime && introOverlay.style.display !== 'none') {
-          // Video blocked or taking too long, allow user interaction
-        }
-      }, 5000);
     }
 
-    // 2. Timeline Pearl Node Motion
-    function movePearl(pearlId, topPx) {
+    // 2. Scroll-Driven Pearl Node & Active Event Tracker
+    window.addEventListener('scroll', () => {
+      const viewportCenter = window.innerHeight / 2;
+
+      // Update Pearl for Day 1
+      updateCardPearl('card-2', 'pearl-day1');
+      // Update Pearl for Day 2
+      updateCardPearl('card-3', 'pearl-day2');
+    });
+
+    function updateCardPearl(cardId, pearlId) {
+      const card = document.getElementById(cardId);
       const pearl = document.getElementById(pearlId);
-      if (pearl) {
-        pearl.style.top = topPx + 'px';
-      }
-    }
+      if (!card || !pearl) return;
 
-    // 3. Scroll Depth-Blur Focus Observer
-    const cards = document.querySelectorAll('.wedding-card');
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '-15% 0px -15% 0px',
-      threshold: 0.5
-    };
+      const items = card.querySelectorAll('.timeline-item');
+      let closestItem = null;
+      let minDistance = Infinity;
 
-    const cardObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('out-of-focus');
-        } else {
-          entry.target.classList.add('out-of-focus');
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const itemCenter = rect.top + rect.height / 2;
+        const distance = Math.abs((window.innerHeight / 2) - itemCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestItem = item;
         }
       });
-    }, observerOptions);
 
-    cards.forEach(card => cardObserver.observe(card));
+      if (closestItem) {
+        items.forEach(i => i.classList.remove('active-event'));
+        closestItem.classList.add('active-event');
+
+        const pos = closestItem.getAttribute('data-pearl-pos');
+        if (pos) {
+          pearl.style.top = pos + 'px';
+        }
+      }
+    }
   </script>
 </body>
 </html>
