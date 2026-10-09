@@ -1,26 +1,33 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation | Sukriti & Sidhant</title>
+  <title>शुभ विवाह निमंत्रण | सुकृति एवं सिद्धांत</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts for Devanagari & Regal Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark: #031c20;
-      --card-cream: #fcfaf6;
-      --teal-primary: #0a4f58;
-      --teal-deep: #052c31;
+      --bg-dark-radial-1: #062b32;
+      --bg-dark-radial-2: #021417;
+      --peacock-teal: #0a4f58;
+      --teal-deep: #052a2f;
       --gold-antique: #947128;
       --gold-deep: #704d0d;
-      --gold-light: #c59b27;
-      --text-dark: #1a2729;
-      --text-muted: #627275;
+      --gold-bright: #c39838;
+      --gold-light: #e6cb7a;
+      --text-dark: #1c292c;
+      --text-muted: #536266;
+
+      --font-royal: 'Rozha One', 'Yatra One', serif;
+      --font-accent: 'Yatra One', 'Rozha One', cursive;
+      --font-serif: 'Noto Serif Devanagari', serif;
+      --font-sans: 'Anek Devanagari', sans-serif;
     }
 
     * {
@@ -32,17 +39,26 @@
     html, body {
       width: 100%;
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 30%, #08383f 0%, var(--bg-dark) 85%);
+      background: radial-gradient(circle at 50% 25%, var(--bg-dark-radial-1) 0%, var(--bg-dark-radial-2) 85%);
       background-attachment: fixed;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: var(--font-serif);
       color: var(--text-dark);
       overflow-x: hidden;
       scroll-behavior: smooth;
+      line-height: 1.5;
     }
 
-    /* ==========================================
-       1. INTRO VIDEO OVERLAY
-       ========================================== */
+    /* Ambient texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(195, 152, 56, 0.05) 1px, transparent 0);
+      background-size: 24px 24px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     #intro-overlay {
       position: fixed;
       inset: 0;
@@ -52,7 +68,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
     }
 
     #intro-overlay.hidden {
@@ -69,71 +85,102 @@
 
     .overlay-controls {
       position: absolute;
-      bottom: 40px;
+      bottom: 50px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       z-index: 10000;
     }
 
     .btn-enter {
-      color: #fff;
-      font-size: 0.8rem;
-      letter-spacing: 3px;
-      background: rgba(10, 79, 88, 0.9);
-      border: 1px solid var(--gold-antique);
-      padding: 12px 30px;
+      color: #ffffff;
+      font-size: 1.05rem;
+      background: rgba(10, 79, 88, 0.92);
+      border: 1px solid var(--gold-bright);
+      padding: 13px 36px;
       border-radius: 30px;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-      backdrop-filter: blur(5px);
-      text-transform: uppercase;
-      font-family: 'Marcellus', serif;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.65), inset 0 0 10px rgba(230, 203, 122, 0.3);
+      backdrop-filter: blur(8px);
+      font-family: var(--font-sans);
+      font-weight: 600;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .btn-enter:hover {
       background: var(--gold-antique);
       color: var(--teal-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(195, 152, 56, 0.4);
     }
 
-    /* ==========================================
-       2. CARDS CONTAINER LAYOUT
-       ========================================== */
+    /* Ambient Audio Toggle Button */
+    .audio-control-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 900;
+      background: rgba(5, 42, 47, 0.85);
+      border: 1px solid var(--gold-bright);
+      color: var(--gold-light);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
+
+    .audio-control-btn:hover {
+      transform: scale(1.08);
+      background: var(--peacock-teal);
+    }
+
     .cards-wrapper {
       position: relative;
+      z-index: 2;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 80px;
-      padding: 80px 15px;
+      gap: 70px;
+      padding: 60px 15px 90px 15px;
     }
 
-    /* Physical Stationery Card Container */
+    /* Card background frame using card_background.jpg */
     .wedding-card {
       position: relative;
       z-index: 2;
       width: 100%;
       max-width: 440px;
-      min-height: 700px;
-      background-color: var(--card-cream);
-      border-radius: 4px;
+      aspect-ratio: 1 / 1.38;
+      min-height: 610px;
+
+      background: url('card_background.jpg') no-repeat center / 100% 100%;
+      border-radius: 8px;
 
       box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.55),
-        0 8px 16px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+        0 22px 45px rgba(0, 0, 0, 0.65),
+        0 8px 20px rgba(0, 0, 0, 0.35);
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      padding: 2.8rem 2.2rem;
+
+      /* Card content padded inside the arch without overlapping the ornate border */
+      padding: 22% 14.5% 9.5% 14.5%;
       text-align: center;
 
-      /* Soft Depth-Blur Focus Transitions */
+      /* Focus Depth Blur Transitions */
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                   opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
                   filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -146,140 +193,147 @@
     }
 
     .wedding-card.out-of-focus {
-      opacity: 0.4;
-      filter: blur(3px);
-      transform: scale(0.96);
+      opacity: 0.35;
+      filter: blur(3.5px);
+      transform: scale(0.95);
     }
 
-    .card-border {
-      position: absolute;
-      inset: 14px;
-      border: 1px solid var(--gold-antique);
-      pointer-events: none;
-    }
-
-    .card-border::after {
-      content: '';
-      position: absolute;
-      inset: 4px;
-      border: 1px solid rgba(148, 113, 40, 0.3);
-    }
-
-    /* ==========================================
-       3. ANTIQUE MATTE JHAROKHA CREST
-       ========================================== */
-    .jharokha-crest-container {
-      width: 100px;
-      height: 115px;
-      margin-bottom: 2px;
-      opacity: 0.92;
-    }
-
-    .jharokha-svg {
+    .card-content-area {
       width: 100%;
       height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .crest-symbol {
-      font-family: 'Cinzel', serif;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
+    .invitation-header-tag {
+      font-family: var(--font-royal);
+      font-size: 1.05rem;
       color: var(--gold-antique);
-      margin-bottom: 5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
     }
 
-    .sub-heading {
-      font-family: 'Marcellus', serif;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
+    .invitation-blessing-text {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
       color: var(--text-muted);
+      font-weight: 500;
+      margin-top: -2px;
     }
 
-    .names-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 4rem;
-      color: var(--teal-primary);
-      line-height: 1.05;
+    .main-title-tag {
+      font-family: var(--font-accent);
+      font-size: 1.55rem;
+      color: var(--peacock-teal);
+      margin: 4px 0 2px 0;
+      line-height: 1.2;
+    }
+
+    .couple-names-wrapper {
+      margin: 4px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .couple-name {
+      font-family: var(--font-royal);
+      font-size: 2.5rem;
+      color: var(--peacock-teal);
+      line-height: 1.08;
       font-weight: 400;
     }
 
-    .ampersand {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.4rem;
-      color: var(--gold-antique);
-      margin: 2px 0;
+    .ampersand-devanagari {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--gold-deep);
+      margin: 1px 0;
+      font-weight: 600;
+    }
+
+    .invitation-body-para {
+      font-size: 0.84rem;
+      color: var(--text-dark);
+      line-height: 1.45;
+      max-width: 95%;
+      font-family: var(--font-serif);
+      font-weight: 500;
     }
 
     .date-badge {
-      font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
-      letter-spacing: 3px;
-      color: var(--teal-primary);
-      border-top: 1px solid var(--gold-antique);
-      border-bottom: 1px solid var(--gold-antique);
-      padding: 8px 24px;
-      margin: 12px 0;
-      text-transform: uppercase;
+      font-family: var(--font-royal);
+      font-size: 0.95rem;
+      color: var(--peacock-teal);
+      border-top: 1px solid rgba(148, 113, 40, 0.4);
+      border-bottom: 1px solid rgba(148, 113, 40, 0.4);
+      padding: 4px 18px;
+      margin: 6px 0;
+      white-space: nowrap;
     }
 
     .location-text {
       font-size: 0.88rem;
       color: var(--text-muted);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      font-family: 'Marcellus', serif;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
     .monogram-stamp {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 5px;
+      font-family: var(--font-royal);
+      font-size: 0.88rem;
       color: var(--gold-antique);
-      text-transform: uppercase;
+      margin-bottom: 2px;
     }
 
-    /* ==========================================
-       4. ITINERARY SPINE & MOVING PEARL
-       ========================================== */
+    .program-card-title {
+      font-family: var(--font-accent);
+      font-size: 1.35rem;
+      color: var(--peacock-teal);
+      margin-top: 2px;
+    }
+
     .itinerary-track {
       position: relative;
       width: 100%;
-      margin: 15px 0;
+      margin: 8px 0;
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      padding-left: 54px;
+      gap: 16px;
+      padding-left: 46px;
     }
 
     .vertical-spine {
       position: absolute;
-      left: 18px;
-      top: 15px;
-      bottom: 15px;
-      width: 1px;
+      left: 15px;
+      top: 10px;
+      bottom: 10px;
+      width: 1.5px;
       background: linear-gradient(
         to bottom,
         transparent,
-        var(--gold-antique) 10%,
-        var(--gold-antique) 90%,
+        var(--gold-bright) 10%,
+        var(--gold-bright) 90%,
         transparent
       );
     }
 
     .pearl-node {
       position: absolute;
-      left: 18px;
-      top: 20px;
+      left: 15px;
+      top: 18px;
       transform: translate(-50%, -50%);
-      width: 13px;
-      height: 13px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e8dec8 60%, var(--gold-antique) 100%);
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #ede3ce 60%, var(--gold-antique) 100%);
       box-shadow: 
-        0 0 6px rgba(148, 113, 40, 0.5),
-        0 0 2px rgba(0, 0, 0, 0.3);
+        0 0 6px rgba(148, 113, 40, 0.6),
+        0 0 2px rgba(0, 0, 0, 0.4);
       z-index: 5;
       transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     }
@@ -290,14 +344,14 @@
       inset: -3px;
       border-radius: 50%;
       border: 1px solid var(--gold-light);
-      opacity: 0.5;
+      opacity: 0.6;
       animation: pearlPulse 2s infinite ease-in-out;
     }
 
     @keyframes pearlPulse {
-      0% { transform: scale(0.9); opacity: 0.7; }
-      50% { transform: scale(1.25); opacity: 0.2; }
-      100% { transform: scale(0.9); opacity: 0.7; }
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 0.2; }
+      100% { transform: scale(0.9); opacity: 0.8; }
     }
 
     .event-item {
@@ -308,298 +362,410 @@
       text-align: left;
       cursor: pointer;
       opacity: 0.35;
-      filter: blur(1.5px);
-      transform: scale(0.96);
-      transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+      filter: blur(1px);
+      transform: scale(0.97);
+      transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
     }
 
     .event-item.active {
       opacity: 1;
       filter: blur(0px);
-      transform: scale(1.04);
+      transform: scale(1.02);
     }
 
     .event-dot {
       position: absolute;
-      left: -36px;
-      top: 8px;
+      left: -31px;
+      top: 6px;
       transform: translateX(-50%);
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background-color: var(--gold-antique);
       z-index: 3;
     }
 
     .event-name {
-      font-family: 'Cinzel', serif;
-      font-size: 0.98rem;
-      letter-spacing: 1.5px;
-      color: var(--teal-primary);
-      font-weight: 600;
-      text-transform: uppercase;
+      font-family: var(--font-royal);
+      font-size: 1.02rem;
+      color: var(--peacock-teal);
+      font-weight: 500;
+      line-height: 1.2;
     }
 
     .event-details-box {
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+      transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
     }
 
     .event-item.active .event-details-box {
-      max-height: 80px;
+      max-height: 60px;
       opacity: 1;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .event-datetime {
-      font-family: 'Marcellus', serif;
-      font-size: 0.82rem;
-      color: var(--gold-antique);
-      letter-spacing: 1px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--gold-deep);
+      font-weight: 600;
     }
 
     .location-link {
       display: inline-block;
-      font-size: 0.82rem;
-      color: var(--teal-primary);
+      font-size: 0.78rem;
+      color: var(--peacock-teal);
       text-decoration: none;
-      margin-top: 3px;
-      font-family: 'Marcellus', serif;
-      letter-spacing: 0.5px;
+      margin-top: 1px;
+      font-family: var(--font-sans);
+      font-weight: 500;
       transition: color 0.2s ease;
     }
 
     .location-link:hover {
-      color: var(--gold-antique);
+      color: var(--gold-deep);
       text-decoration: underline;
     }
 
     .btn-action {
-      background: var(--teal-primary);
-      color: #fff;
-      border: 1px solid var(--gold-antique);
-      padding: 10px 24px;
-      font-family: 'Marcellus', serif;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 2px;
+      background: var(--peacock-teal);
+      color: #ffffff;
+      border: 1px solid var(--gold-bright);
+      padding: 7px 18px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 20px;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      margin-bottom: 2px;
     }
 
     .btn-action:hover {
       background: var(--gold-antique);
       color: var(--teal-deep);
+      transform: translateY(-1px);
+    }
+
+    /* Blessings & Family Info Styling */
+    .blessing-quote {
+      font-size: 0.85rem;
+      color: var(--peacock-teal);
+      line-height: 1.5;
+      font-weight: 500;
+      padding: 0 4px;
+      font-style: italic;
+    }
+
+    .family-heading {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .family-members {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      color: var(--peacock-teal);
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 480px) {
+      .wedding-card {
+        max-width: 100%;
+        min-height: 570px;
+        padding: 23% 13.5% 9% 13.5%;
+      }
+      .couple-name {
+        font-size: 2.2rem;
+      }
+      .main-title-tag {
+        font-size: 1.35rem;
+      }
+      .event-name {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Ambient Audio Controls -->
+  <button class="audio-control-btn" id="audioToggleBtn" title="संगीत चालू / बंद" onclick="toggleAudio()">
+    <svg id="audioIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+    </svg>
+  </button>
+
   <!-- 1. INTRO VIDEO OVERLAY -->
   <div id="intro-overlay">
-    <video id="intro-video" playsinline autoplay muted>
+    <video id="intro-video" playsinline autoplay muted loop>
       <source src="wedding_intro.mp4" type="video/mp4">
     </video>
     <div class="overlay-controls">
-      <button class="btn-enter" onclick="closeIntro()">Enter Invitation</button>
+      <button class="btn-enter" onclick="closeIntro()">
+        <span>॥ निमंत्रण पत्र खोलें ॥</span>
+      </button>
     </div>
   </div>
 
   <!-- 2. MAIN CARDS CONTAINER -->
   <div class="cards-wrapper">
 
-    <!-- CARD 1: HERO -->
+    <!-- CARD 1: MAIN INVITATION HERO -->
     <div class="wedding-card in-focus">
-      <div class="card-border"></div>
+      <div class="card-content-area">
+        
+        <div>
+          <div class="invitation-header-tag">॥ श्री गणेशाय नमः ॥</div>
+          <div class="invitation-blessing-text">परमेश्वर की कृपा से</div>
+        </div>
 
-      <!-- ANTIQUE MATTE JHAROKHA CREST -->
-      <div class="jharokha-crest-container">
-        <svg class="jharokha-svg" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="antiqueGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#704d0d" />
-              <stop offset="45%" stop-color="#c59b27" />
-              <stop offset="100%" stop-color="#8a6218" />
-            </linearGradient>
-          </defs>
-
-          <!-- Lotus Crown Peak -->
-          <path d="M50 8 C48 13 43 16 43 20 C43 23 46 24 50 21 C54 24 57 23 57 20 C57 16 52 13 50 8 Z" fill="url(#antiqueGoldGrad)" />
-
-          <!-- Outer Jharokha Arch -->
-          <path d="M16 104 L16 52 C16 33 30 23 50 23 C70 23 84 33 84 52 L84 104" stroke="url(#antiqueGoldGrad)" stroke-width="1.2" fill="none" />
+        <div>
+          <h2 class="main-title-tag">शुभ विवाह निमंत्रण</h2>
           
-          <!-- Inner Cusped Scalloped Arch -->
-          <path d="M22 104 L22 56 C22 46 28 41 33 43 C38 45 42 39 50 37 C58 39 62 45 67 43 C72 41 78 46 78 56 L78 104" stroke="url(#antiqueGoldGrad)" stroke-width="1" fill="none" />
+          <div class="couple-names-wrapper">
+            <h1 class="couple-name">सुकृति</h1>
+            <div class="ampersand-devanagari">एवं</div>
+            <h1 class="couple-name">सिद्धांत</h1>
+          </div>
+        </div>
 
-          <!-- Delicate Lattice Lines -->
-          <line x1="16" y1="30" x2="84" y2="30" stroke="url(#antiqueGoldGrad)" stroke-width="0.8" />
-          <circle cx="50" cy="28" r="1.5" fill="url(#antiqueGoldGrad)" />
-          <circle cx="38" cy="30.5" r="1" fill="url(#antiqueGoldGrad)" />
-          <circle cx="62" cy="30.5" r="1" fill="url(#antiqueGoldGrad)" />
+        <p class="invitation-body-para">
+          आपकी गरिमामयी उपस्थिति एवं शुभाशीष की आकांक्षा रखते हैं।
+        </p>
 
-          <!-- Base Pendant -->
-          <path d="M50 104 L50 110 M48 110 C48 113 50 115 50 115 C50 115 52 113 52 110 Z" stroke="url(#antiqueGoldGrad)" stroke-width="1" fill="url(#antiqueGoldGrad)" />
+        <div>
+          <div class="date-badge">
+            दिनांक: 02 एवं 03 दिसंबर, 2026
+          </div>
 
-          <!-- Monogram S & S -->
-          <text x="50" y="69" font-family="'Cinzel', serif" font-size="12.5" font-weight="600" fill="url(#antiqueGoldGrad)" text-anchor="middle" letter-spacing="1.5">S&amp;S</text>
-        </svg>
+          <div class="location-text">
+            स्थान: लोनावला एवं खंडाला
+          </div>
+        </div>
+
+        <div class="monogram-stamp">— सु एवं सि —</div>
+
       </div>
-
-      <span class="sub-heading">Together with their families</span>
-
-      <div style="margin: 6px 0;">
-        <h1 class="names-title">Sukriti</h1>
-        <div class="ampersand">&</div>
-        <h1 class="names-title">Sidhant</h1>
-      </div>
-
-      <p style="font-style: italic; font-size: 0.95rem; color: var(--text-dark);">
-        request the honor of your presence to celebrate their wedding
-      </p>
-
-      <div class="date-badge">
-        December 02 & 03, 2026
-      </div>
-
-      <div class="location-text">
-        Lonavala & Khandala
-      </div>
-
-      <div class="monogram-stamp">— S & S —</div>
     </div>
 
     <!-- CARD 2: PROGRAM - DAY I -->
     <div class="wedding-card out-of-focus" id="cardDay1">
-      <div class="card-border"></div>
-      <div class="crest-symbol">PROGRAM • DAY I</div>
-      <span class="sub-heading">Wednesday, December 02, 2026</span>
+      <div class="card-content-area">
+        
+        <div>
+          <h2 class="program-card-title">कार्यक्रम • प्रथम दिवस</h2>
+          <div class="invitation-blessing-text">बुधवार, 02 दिसंबर, 2026</div>
+        </div>
 
-      <div class="itinerary-track">
-        <div class="vertical-spine"></div>
-        <div class="pearl-node" id="pearlDay1"></div>
+        <div class="itinerary-track">
+          <div class="vertical-spine"></div>
+          <div class="pearl-node" id="pearlDay1"></div>
 
-        <div class="event-item active" data-index="0">
-          <div class="event-dot"></div>
-          <div class="event-name">Ganesh Poojan</div>
-          <div class="event-details-box">
-            <div class="event-datetime">Wednesday • 1:00 PM</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          <div class="event-item active" data-index="0">
+            <div class="event-dot"></div>
+            <div class="event-name">गणेश पूजन</div>
+            <div class="event-details-box">
+              <div class="event-datetime">बुधवार • दोपहर 01:00 बजे</div>
+              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">होटल सफायर, लोनावला ↗</a>
+            </div>
+          </div>
+
+          <div class="event-item" data-index="1">
+            <div class="event-dot"></div>
+            <div class="event-name">मण्डप</div>
+            <div class="event-details-box">
+              <div class="event-datetime">बुधवार • दोपहर 02:00 बजे</div>
+              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">होटल सफायर, लोनावला ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="event-item" data-index="1">
-          <div class="event-dot"></div>
-          <div class="event-name">Mandap</div>
-          <div class="event-details-box">
-            <div class="event-datetime">Wednesday • 2:00 PM</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
-          </div>
-        </div>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sukriti+%26+Sidhant+Wedding+Day+1&dates=20261202T073000Z/20261202T180000Z&details=Ganesh+Poojan+%26+Mandap+at+Hotel+Sapphire+Lonavala" target="_blank" class="btn-action">
+          कैलेंडर में जोड़ें (प्रथम दिवस)
+        </a>
+
+        <div class="monogram-stamp">— १ —</div>
+
       </div>
-
-      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sukriti+%26+Sidhant+Wedding+Day+1&dates=20261202T073000Z/20261202T180000Z&details=Ganesh+Poojan+%26+Mandap+at+Hotel+Sapphire+Lonavala" target="_blank" class="btn-action">
-        Save Day 1 To Calendar
-      </a>
     </div>
 
     <!-- CARD 3: PROGRAM - DAY II -->
     <div class="wedding-card out-of-focus" id="cardDay2">
-      <div class="card-border"></div>
-      <div class="crest-symbol">PROGRAM • DAY II</div>
-      <span class="sub-heading">Thursday, December 03, 2026</span>
+      <div class="card-content-area">
+        
+        <div>
+          <h2 class="program-card-title">कार्यक्रम • द्वितीय दिवस</h2>
+          <div class="invitation-blessing-text">गुरुवार, 03 दिसंबर, 2026</div>
+        </div>
 
-      <div class="itinerary-track">
-        <div class="vertical-spine"></div>
-        <div class="pearl-node" id="pearlDay2"></div>
+        <div class="itinerary-track">
+          <div class="vertical-spine"></div>
+          <div class="pearl-node" id="pearlDay2"></div>
 
-        <div class="event-item active" data-index="0">
-          <div class="event-dot"></div>
-          <div class="event-name">Mamera</div>
-          <div class="event-details-box">
-            <div class="event-datetime">Thursday • 11:00 AM</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
+          <div class="event-item active" data-index="0">
+            <div class="event-dot"></div>
+            <div class="event-name">मामेरा</div>
+            <div class="event-details-box">
+              <div class="event-datetime">गुरुवार • सुबह 11:00 बजे</div>
+              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">होटल सफायर, लोनावला ↗</a>
+            </div>
+          </div>
+
+          <div class="event-item" data-index="1">
+            <div class="event-dot"></div>
+            <div class="event-name">बारात</div>
+            <div class="event-details-box">
+              <div class="event-datetime">गुरुवार • सायं 05:00 बजे</div>
+              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">होटल सफायर, लोनावला ↗</a>
+            </div>
+          </div>
+
+          <div class="event-item" data-index="2">
+            <div class="event-dot"></div>
+            <div class="event-name">प्रीतिभोज</div>
+            <div class="event-details-box">
+              <div class="event-datetime">गुरुवार • रात्रि 09:00 बजे</div>
+              <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">होटल सफायर, लोनावला ↗</a>
+            </div>
+          </div>
+
+          <div class="event-item" data-index="3">
+            <div class="event-dot"></div>
+            <div class="event-name" style="color: var(--gold-deep);">विवाह (फेरे)</div>
+            <div class="event-details-box">
+              <div class="event-datetime">गुरुवार • देर रात्रि</div>
+              <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="location-link">अमोराविडा, खंडाला ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="event-item" data-index="1">
-          <div class="event-dot"></div>
-          <div class="event-name">Barat</div>
-          <div class="event-details-box">
-            <div class="event-datetime">Thursday • 5:00 PM</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
-          </div>
-        </div>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sukriti+%26+Sidhant+Wedding+Day+2&dates=20261203T053000Z/20261204T020000Z&details=Mamera%2C+Barat%2C+Dinner+%26+Vivah+at+Hotel+Sapphire+%26+Amoravida" target="_blank" class="btn-action">
+          कैलेंडर में जोड़ें (द्वितीय दिवस)
+        </a>
 
-        <div class="event-item" data-index="2">
-          <div class="event-dot"></div>
-          <div class="event-name">Dinner</div>
-          <div class="event-details-box">
-            <div class="event-datetime">Thursday • 9:00 PM</div>
-            <a href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank" class="location-link">Hotel Sapphire, Lonavala ↗</a>
-          </div>
-        </div>
+        <div class="monogram-stamp">— २ —</div>
 
-        <div class="event-item" data-index="3">
-          <div class="event-dot"></div>
-          <div class="event-name" style="color: var(--gold-antique);">Vivah (Pheras)</div>
-          <div class="event-details-box">
-            <div class="event-datetime">Thursday • Late Night</div>
-            <a href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank" class="location-link">Amoravida, Khandala ↗</a>
-          </div>
-        </div>
       </div>
-
-      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sukriti+%26+Sidhant+Wedding+Day+2&dates=20261203T053000Z/20261204T020000Z&details=Mamera%2C+Barat%2C+Dinner+%26+Vivah+at+Hotel+Sapphire+%26+Amoravida" target="_blank" class="btn-action">
-        Save Day 2 To Calendar
-      </a>
     </div>
 
-    <!-- CARD 4: BLESSINGS -->
+    <!-- CARD 4: BLESSINGS & HOSTS -->
     <div class="wedding-card out-of-focus">
-      <div class="card-border"></div>
-      <div class="crest-symbol">BLESSINGS</div>
+      <div class="card-content-area">
+        
+        <div class="invitation-header-tag">॥ शुभाशीष ॥</div>
 
-      <p style="font-size: 1.15rem; color: var(--teal-primary); line-height: 1.6; font-style: italic; padding: 0 10px;">
-        "We seek your gracious presence, prayers, and blessings as we embark on this sacred new chapter."
-      </p>
+        <p class="blessing-quote">
+          "आपकी गरिमामयी उपस्थिति एवं स्नेहपूर्ण आशीर्वाद ही हमारे लिए परम सौभाग्य एवं संबल है।"
+        </p>
 
-      <div style="width: 40px; height: 1px; background: var(--gold-antique); margin: 5px 0;"></div>
+        <div style="width: 40px; height: 1px; background: var(--gold-antique); margin: 2px 0;"></div>
 
-      <div>
-        <span class="sub-heading">Bride's Parents</span>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
-          Sangita & Sunil Kumar Shukla
-        </h3>
-      </div>
+        <div>
+          <span class="family-heading">वधू पक्ष</span>
+          <div class="family-members">
+            संगीता एवं सुनील कुमार शुक्ला
+          </div>
+        </div>
 
-      <div>
-        <span class="sub-heading">Groom's Parents</span>
-        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--teal-primary); margin-top: 4px; font-weight: 600;">
-          Sadhana & Om Prakash Sharma
-        </h3>
-      </div>
+        <div>
+          <span class="family-heading">वर पक्ष</span>
+          <div class="family-members">
+            साधना एवं ओम प्रकाश शर्मा
+          </div>
+        </div>
 
-      <div class="names-title" style="font-size: 2.8rem; margin-top: 10px; color: var(--gold-antique);">
-        With Warm Regards
+        <div>
+          <div class="invitation-header-tag" style="font-size: 1.1rem; margin-bottom: 2px;">स्वागतातुर</div>
+          <div class="location-text" style="color: var(--peacock-teal);">
+            समस्त शुक्ला एवं शर्मा परिवार
+          </div>
+        </div>
+
       </div>
     </div>
 
   </div>
 
   <script>
-    // 1. INTRO OVERLAY LOGIC
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video');
+    let audioCtx = null;
+    let isPlayingAudio = false;
 
     function closeIntro() {
       if (overlay) overlay.classList.add('hidden');
       if (video) video.pause();
+      initSoftShehnaiTone();
+    }
+
+    function initSoftShehnaiTone() {
+      if (audioCtx) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const rootFreq = 219.82; // Sa (A3)
+        const freqs = [rootFreq, rootFreq * 1.498, rootFreq * 2]; // Sa - Pa - Sa octave
+
+        freqs.forEach((f, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = idx === 0 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+
+          gain.gain.setValueAtTime(0.015 / (idx + 1), audioCtx.currentTime);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+        });
+
+        isPlayingAudio = true;
+        updateAudioIcon();
+      } catch (e) {
+        console.log('Audio initialization skipped:', e);
+      }
+    }
+
+    function toggleAudio() {
+      if (!audioCtx) {
+        initSoftShehnaiTone();
+        return;
+      }
+      if (audioCtx.state === 'running') {
+        audioCtx.suspend();
+        isPlayingAudio = false;
+      } else if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+        isPlayingAudio = true;
+      }
+      updateAudioIcon();
+    }
+
+    function updateAudioIcon() {
+      const btn = document.getElementById('audioToggleBtn');
+      if (!btn) return;
+      if (isPlayingAudio) {
+        btn.style.borderColor = 'var(--gold-bright)';
+        btn.style.color = 'var(--gold-light)';
+      } else {
+        btn.style.borderColor = 'var(--text-muted)';
+        btn.style.color = 'var(--text-muted)';
+      }
     }
 
     document.addEventListener('click', function() {
@@ -620,7 +786,6 @@
       }
     }, 6000);
 
-    // 2. SOFT DEPTH-BLUR SCROLL OBSERVER
     const cards = document.querySelectorAll('.wedding-card');
     
     const cardObserver = new IntersectionObserver((entries) => {
@@ -633,11 +798,10 @@
           entry.target.classList.add('out-of-focus');
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.38 });
 
     cards.forEach(card => cardObserver.observe(card));
 
-    // 3. DYNAMIC PEARL & EVENT FOCUS CONTROLLER
     function setupItineraryCard(cardId, pearlId) {
       const card = document.getElementById(cardId);
       const pearl = document.getElementById(pearlId);
@@ -694,3 +858,4 @@
   </script>
 </body>
 </html>
+```
