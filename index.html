@@ -32,7 +32,7 @@
       overflow-x: hidden;
     }
 
-    /* Video Intro Overlay - Perfectly Contained Frame */
+    /* Video Intro Overlay - Fully Contained Video Player */
     #intro-overlay {
       position: fixed;
       top: 0;
@@ -40,7 +40,7 @@
       width: 100vw;
       height: 100vh;
       background-color: #0b1a1c;
-      z-index: 9999;
+      z-index: 99999;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -65,16 +65,16 @@
     }
 
     #intro-video {
+      width: 100%;
+      height: 100%;
       max-width: 100%;
       max-height: 100%;
-      width: auto;
-      height: auto;
-      object-fit: contain; /* Fixes video going out of frame */
+      object-fit: contain; /* Prevents video from clipping or stretching */
     }
 
     .skip-btn {
       position: absolute;
-      bottom: 30px;
+      bottom: 35px;
       padding: 10px 24px;
       background: rgba(255, 255, 255, 0.92);
       color: #0f3838;
@@ -86,7 +86,7 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       backdrop-filter: blur(4px);
       transition: transform 0.2s ease, background 0.2s ease;
-      z-index: 10000;
+      z-index: 100000;
     }
 
     .skip-btn:active {
@@ -104,13 +104,14 @@
       max-width: 420px;
     }
 
-    /* 9:16 Smartphone Frame */
+    /* 9:16 Aspect Ratio Wedding Card Frame */
     .wedding-card {
       position: relative;
       width: calc(100vw - 24px);
       max-width: 390px;
       aspect-ratio: 9 / 16;
       
+      /* Multi-filename CSS Fallback for background frame */
       background-image: url('card_background.jpg'), url('card_%20background.jpg'), url('card_ background.jpg');
       background-position: center center;
       background-size: 100% 100%;
@@ -129,7 +130,7 @@
       text-align: center;
     }
 
-    /* Typography & Content Structure */
+    /* Card Content Formatting */
     .card-top-heading {
       font-family: 'Rozha One', serif;
       color: #926d27;
@@ -140,21 +141,21 @@
     .card-title {
       font-family: 'Yatra One', cursive;
       color: #0f3838;
-      font-size: 1.22rem;
+      font-size: 1.25rem;
       line-height: 1.2;
     }
 
     .names-heading {
       font-family: 'Rozha One', serif;
       color: #0f3838;
-      font-size: 1.55rem;
+      font-size: 1.6rem;
       line-height: 1.15;
     }
 
     .connector-text {
       font-family: 'Noto Serif Devanagari', serif;
       color: #926d27;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
     }
 
@@ -196,10 +197,10 @@
       letter-spacing: 1px;
     }
 
-    /* Itinerary Timeline Styles */
+    /* Accordion Itinerary Styling */
     .program-date-header {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #926d27;
       border-bottom: 1px dashed #c5a059;
@@ -212,8 +213,8 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin: 2px 0;
+      gap: 12px;
+      margin: 4px 0;
     }
 
     .timeline-line {
@@ -234,7 +235,7 @@
       background: #ffffff;
       border: 2.5px solid #0f3838;
       box-shadow: 0 0 6px rgba(15, 56, 56, 0.5);
-      transition: top 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: top 0.35s cubic-bezier(0.25, 1, 0.5, 1);
       z-index: 2;
     }
 
@@ -242,32 +243,48 @@
       position: relative;
       padding-left: 28px;
       text-align: left;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .timeline-item.active-event .event-name {
-      color: #926d27;
-      transform: scale(1.02);
     }
 
     .event-name {
       font-family: 'Rozha One', serif;
+      color: #614f47;
+      font-size: 0.88rem;
+      line-height: 1.2;
+      transition: color 0.3s ease, font-size 0.3s ease;
+      cursor: pointer;
+    }
+
+    .timeline-item.active-event .event-name {
       color: #0f3838;
-      font-size: 0.86rem;
-      line-height: 1.15;
-      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+
+    /* Collapsible Details Container */
+    .event-details-collapsible {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+      margin-top: 0;
+    }
+
+    .timeline-item.active-event .event-details-collapsible {
+      max-height: 70px;
+      opacity: 1;
+      margin-top: 3px;
     }
 
     .event-time {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: #926d27;
       font-weight: 600;
     }
 
     .map-link {
       display: inline-block;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       color: #0f3838;
       text-decoration: none;
       font-weight: 600;
@@ -275,10 +292,10 @@
       border-bottom: 1px dotted #0f3838;
     }
 
-    /* Blessings & Host Card */
+    /* Host Card Specific */
     .blessing-quote {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       font-style: italic;
       color: #4a3c35;
       line-height: 1.35;
@@ -309,7 +326,7 @@
 </head>
 <body>
 
-  <!-- Video Intro Overlay -->
+  <!-- Video Intro Overlay (Plays once until completion) -->
   <div id="intro-overlay">
     <div class="video-container">
       <video id="intro-video" autoplay muted playsinline preload="auto">
@@ -352,18 +369,22 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day1" style="top: 4px;"></div>
+        <div class="pearl-node" id="pearl-day1" style="top: 2px;"></div>
         
-        <div class="timeline-item active-event" data-pearl-pos="4" id="d1-item-1">
+        <div class="timeline-item active-event" data-pearl-pos="2">
           <div class="event-name">गणेश पूजन</div>
-          <div class="event-time">अपराह्न 1:00 बजे</div>
-          <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर, लोनावला</a>
+          <div class="event-details-collapsible">
+            <div class="event-time">अपराह्न 1:00 बजे</div>
+            <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">होटल सफायर, लोनावला</a>
+          </div>
         </div>
         
-        <div class="timeline-item" data-pearl-pos="60" id="d1-item-2">
+        <div class="timeline-item" data-pearl-pos="45">
           <div class="event-name">मंडप स्थापन</div>
-          <div class="event-time">अपराह्न 2:00 बजे</div>
-          <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर, लोनावला</a>
+          <div class="event-details-collapsible">
+            <div class="event-time">अपराह्न 2:00 बजे</div>
+            <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">होटल सफायर, लोनावला</a>
+          </div>
         </div>
       </div>
 
@@ -380,22 +401,28 @@
         <div class="timeline-line"></div>
         <div class="pearl-node" id="pearl-day2" style="top: 2px;"></div>
         
-        <div class="timeline-item active-event" data-pearl-pos="2" id="d2-item-1">
+        <div class="timeline-item active-event" data-pearl-pos="2">
           <div class="event-name">मामेरा (भात)</div>
-          <div class="event-time">प्रातः 11:00 बजे</div>
-          <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर, लोनावला</a>
+          <div class="event-details-collapsible">
+            <div class="event-time">प्रातः 11:00 बजे</div>
+            <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">होटल सफायर, लोनावला</a>
+          </div>
         </div>
         
-        <div class="timeline-item" data-pearl-pos="38" id="d2-item-2">
+        <div class="timeline-item" data-pearl-pos="42">
           <div class="event-name">बारात प्रस्थान</div>
-          <div class="event-time">सायं 5:00 बजे</div>
-          <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">📍 होटल सफायर से अमोराविडा</a>
+          <div class="event-details-collapsible">
+            <div class="event-time">सायं 5:00 बजे</div>
+            <a class="map-link" href="https://maps.google.com/?q=Hotel+Sapphire+Lonavala" target="_blank">होटल सफायर से अमोराविडा</a>
+          </div>
         </div>
 
-        <div class="timeline-item" data-pearl-pos="74" id="d2-item-3">
+        <div class="timeline-item" data-pearl-pos="82">
           <div class="event-name">रात्रिभोज एवं विवाह (फेरे)</div>
-          <div class="event-time">रात्रि 9:00 बजे से (फेरे देर रात्रि)</div>
-          <a class="map-link" href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank">📍 अमोराविडा, खंडाला</a>
+          <div class="event-details-collapsible">
+            <div class="event-time">रात्रि 9:00 बजे से (फेरे देर रात्रि)</div>
+            <a class="map-link" href="https://maps.google.com/?q=Amoravida+Khandala" target="_blank">अमोराविडा, खंडाला</a>
+          </div>
         </div>
       </div>
 
@@ -428,7 +455,7 @@
   </div>
 
   <script>
-    // 1. Non-Looping Intro Video dismiss logic
+    // 1. Intro Video Dismiss Logic (Auto-moves to page 1 on completion)
     const introOverlay = document.getElementById('intro-overlay');
     const introVideo = document.getElementById('intro-video');
 
@@ -442,21 +469,20 @@
     }
 
     if (introVideo) {
+      // Advance automatically when video naturally finishes playing
       introVideo.addEventListener('ended', dismissIntro);
       introVideo.addEventListener('error', dismissIntro);
     }
 
-    // 2. Scroll-Driven Pearl Node & Active Event Tracker
+    // 2. Scroll Accordion Tracker Logic
     window.addEventListener('scroll', () => {
-      const viewportCenter = window.innerHeight / 2;
-
-      // Update Pearl for Day 1
-      updateCardPearl('card-2', 'pearl-day1');
-      // Update Pearl for Day 2
-      updateCardPearl('card-3', 'pearl-day2');
+      // Update Accordion and Pearl for Day 1
+      updateAccordionCard('card-2', 'pearl-day1');
+      // Update Accordion and Pearl for Day 2
+      updateAccordionCard('card-3', 'pearl-day2');
     });
 
-    function updateCardPearl(cardId, pearlId) {
+    function updateAccordionCard(cardId, pearlId) {
       const card = document.getElementById(cardId);
       const pearl = document.getElementById(pearlId);
       if (!card || !pearl) return;
