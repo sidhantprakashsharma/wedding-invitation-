@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>शुभ विवाह - सुकृति एवं सिद्धान्त</title>
+  <title>शुभ विवाह - सुकृति एवं सिद्धांत</title>
   
   <!-- Google Fonts for Regal Devanagari Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,15 +122,15 @@
       border-radius: 8px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
 
-      /* Inner padding centered inside the frame */
-      padding: 30% 16% 12% 16%;
+      /* Optimized padding to use empty space gracefully under the arch */
+      padding: 24% 15% 14% 15%;
 
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 16px;
       text-align: center;
-      overflow: hidden;
     }
 
     /* Card Content Formatting */
@@ -174,9 +174,10 @@
       width: 100%;
       border-top: 1px solid rgba(197, 160, 89, 0.4);
       border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-      padding: 6px 0;
+      padding: 8px 0;
       background: rgba(255, 255, 255, 0.35);
       border-radius: 4px;
+      margin-top: 4px;
     }
 
     .event-date {
@@ -196,11 +197,11 @@
     /* Accordion Itinerary Styling */
     .program-date-header {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #926d27;
       border-bottom: 1px dashed #c5a059;
-      padding-bottom: 2px;
+      padding-bottom: 4px;
       width: 100%;
     }
 
@@ -209,8 +210,8 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin: 4px 0;
+      gap: 20px;
+      margin-top: 8px;
     }
 
     .timeline-line {
@@ -231,7 +232,7 @@
       background: #ffffff;
       border: 2.5px solid #0f3838;
       box-shadow: 0 0 6px rgba(15, 56, 56, 0.5);
-      transition: top 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       z-index: 2;
     }
 
@@ -245,16 +246,16 @@
     .event-name {
       font-family: 'Rozha One', serif;
       color: #726056;
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       line-height: 1.2;
-      transition: color 0.4s ease, font-size 0.4s ease;
+      transition: color 0.3s ease, font-size 0.3s ease;
       cursor: pointer;
     }
 
     /* Active State: Highlighted Title */
     .timeline-item.active-event .event-name {
       color: #0f3838;
-      font-size: 0.98rem;
+      font-size: 1.02rem;
       font-weight: 700;
     }
 
@@ -263,62 +264,66 @@
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+      transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
       margin-top: 0;
     }
 
     .timeline-item.active-event .event-details-collapsible {
       max-height: 80px;
       opacity: 1;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     .event-time {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       color: #926d27;
       font-weight: 600;
     }
 
     .map-link {
       display: inline-block;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: #0f3838;
       text-decoration: none;
       font-weight: 600;
-      margin-top: 1px;
+      margin-top: 2px;
       border-bottom: 1px dotted #0f3838;
     }
 
     /* Host Card */
     .blessing-quote {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.76rem;
+      font-size: 0.82rem;
       font-style: italic;
       color: #4a3c35;
-      line-height: 1.35;
+      line-height: 1.4;
+      margin-top: 6px;
     }
 
     .host-section {
       width: 100%;
+      margin-top: 8px;
     }
 
     .host-title {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
     }
 
     .host-names {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: #0f3838;
+      margin-top: 2px;
     }
 
     .decorative-divider {
       color: #c5a059;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
+      margin: 4px 0;
     }
   </style>
 </head>
@@ -366,9 +371,9 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day1" style="top: 2px;"></div>
+        <div class="pearl-node" id="pearl-day1"></div>
         
-        <div class="timeline-item active-event" data-pearl-pos="2">
+        <div class="timeline-item active-event">
           <div class="event-name">गणेश पूजन</div>
           <div class="event-details-collapsible">
             <div class="event-time">अपराह्न 1:00 बजे</div>
@@ -376,7 +381,7 @@
           </div>
         </div>
         
-        <div class="timeline-item" data-pearl-pos="42">
+        <div class="timeline-item">
           <div class="event-name">मंडप स्थापन</div>
           <div class="event-details-collapsible">
             <div class="event-time">अपराह्न 2:00 बजे</div>
@@ -394,9 +399,9 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day2" style="top: 2px;"></div>
+        <div class="pearl-node" id="pearl-day2"></div>
         
-        <div class="timeline-item active-event" data-pearl-pos="2">
+        <div class="timeline-item active-event">
           <div class="event-name">मामेरा (भात)</div>
           <div class="event-details-collapsible">
             <div class="event-time">प्रातः 11:00 बजे</div>
@@ -404,7 +409,7 @@
           </div>
         </div>
         
-        <div class="timeline-item" data-pearl-pos="42">
+        <div class="timeline-item">
           <div class="event-name">बारात प्रस्थान</div>
           <div class="event-details-collapsible">
             <div class="event-time">सायं 5:00 बजे</div>
@@ -412,7 +417,7 @@
           </div>
         </div>
 
-        <div class="timeline-item" data-pearl-pos="82">
+        <div class="timeline-item">
           <div class="event-name">रात्रिभोज एवं विवाह (फेरे)</div>
           <div class="event-details-collapsible">
             <div class="event-time">रात्रि 9:00 बजे से (फेरे देर रात्रि)</div>
@@ -464,17 +469,13 @@
       introVideo.addEventListener('error', dismissIntro);
     }
 
-    // 2. Scroll Accordion & Pearl Movement
-    window.addEventListener('scroll', () => {
-      updateAccordionCard('card-2', 'pearl-day1', 180);
-      updateAccordionCard('card-3', 'pearl-day2', 110);
-    });
-
-    function updateAccordionCard(cardId, pearlId, threshold) {
+    // 2. Dynamic Scroll Accordion & Pearl Movement
+    function updateAccordionCard(cardId, pearlId) {
       const card = document.getElementById(cardId);
       const pearl = document.getElementById(pearlId);
       if (!card || !pearl) return;
 
+      const container = card.querySelector('.timeline-container');
       const items = card.querySelectorAll('.timeline-item');
       let closestItem = null;
       let minDistance = Infinity;
@@ -491,18 +492,29 @@
         }
       });
 
-      if (closestItem && minDistance < threshold) {
-        if (!closestItem.classList.contains('active-event')) {
-          items.forEach(i => i.classList.remove('active-event'));
-          closestItem.classList.add('active-event');
+      if (closestItem && !closestItem.classList.contains('active-event')) {
+        items.forEach(i => i.classList.remove('active-event'));
+        closestItem.classList.add('active-event');
 
-          const pos = closestItem.getAttribute('data-pearl-pos');
-          if (pos) {
-            pearl.style.top = pos + 'px';
-          }
-        }
+        // Dynamically compute exact pearl vertical position inside container
+        const containerRect = container.getBoundingClientRect();
+        const itemRect = closestItem.getBoundingClientRect();
+        const relativeTop = (itemRect.top - containerRect.top) + 2;
+        
+        pearl.style.top = relativeTop + 'px';
       }
     }
+
+    // Run on scroll and initial page load
+    window.addEventListener('scroll', () => {
+      updateAccordionCard('card-2', 'pearl-day1');
+      updateAccordionCard('card-3', 'pearl-day2');
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateAccordionCard('card-2', 'pearl-day1');
+      updateAccordionCard('card-3', 'pearl-day2');
+    });
   </script>
 </body>
 </html>
