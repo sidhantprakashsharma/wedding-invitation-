@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>शुभ विवाह - सुकृति एवं सिद्धांत</title>
   
+  <!-- Google Fonts for Regal Devanagari Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@300;400;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
 
   <style>
+    /* Reset & Base Canvas Styling */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -30,6 +32,7 @@
       overflow-x: hidden;
     }
 
+    /* Video Intro Overlay */
     #intro-overlay {
       position: fixed;
       top: 0;
@@ -69,6 +72,7 @@
       object-fit: cover;
     }
 
+    /* Skip Button */
     .skip-btn {
       position: fixed;
       bottom: 36px;
@@ -93,6 +97,7 @@
       background: #f4ece1;
     }
 
+    /* Cards Layout Container */
     .cards-container {
       display: flex;
       flex-direction: column;
@@ -102,6 +107,7 @@
       max-width: 420px;
     }
 
+    /* 9:16 Aspect Ratio Wedding Card Frame - Exact Specified Padding */
     .wedding-card {
       position: relative;
       width: calc(100vw - 24px);
@@ -116,16 +122,17 @@
       border-radius: 8px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
 
-      /* Optimized padding to comfortably frame elements within the Arch */
-      padding: 30% 16% 12% 16%;
+      /* Inner Arch Padding: 36% top, 17% right, 12% bottom, 17% left */
+      padding: 36% 17% 12% 17%;
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       text-align: center;
     }
 
+    /* Card Typography & Header Formatting */
     .card-top-heading {
       font-family: 'Rozha One', serif;
       color: #926d27;
@@ -166,7 +173,7 @@
       width: 100%;
       border-top: 1px solid rgba(197, 160, 89, 0.4);
       border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-      padding: 6px 0;
+      padding: 5px 0;
       background: rgba(255, 255, 255, 0.35);
       border-radius: 4px;
     }
@@ -185,49 +192,53 @@
       font-size: 0.75rem;
     }
 
+    /* Bottom Spacer replacing stamp to preserve vertical balance */
+    .card-bottom-spacer {
+      height: 14px;
+      width: 100%;
+    }
+
+    /* Accordion Timeline Layout */
     .program-date-header {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #926d27;
       border-bottom: 1px dashed #c5a059;
-      padding-bottom: 4px;
+      padding-bottom: 2px;
       width: 100%;
-      margin-bottom: 4px;
     }
 
     .timeline-container {
       position: relative;
       width: 100%;
-      flex: 1; /* Takes up all available spacious height inside the card center */
       display: flex;
       flex-direction: column;
-      justify-content: space-around; /* Distributes events cleanly without bunching */
-      padding: 8px 0;
+      gap: 14px;
+      margin: 4px 0;
     }
 
     .timeline-line {
       position: absolute;
       left: 12px;
-      top: 12px;
-      bottom: 12px;
+      top: 6px;
+      bottom: 6px;
       width: 2px;
       background: linear-gradient(180deg, #c5a059 0%, #0f3838 100%);
-      z-index: 1;
     }
 
+    /* Sliding Pearl Animation */
     .pearl-node {
       position: absolute;
       left: 7px;
-      top: 12px;
       width: 12px;
       height: 12px;
       border-radius: 50%;
       background: #ffffff;
       border: 2.5px solid #0f3838;
       box-shadow: 0 0 6px rgba(15, 56, 56, 0.5);
-      transition: top 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-      z-index: 3;
+      transition: top 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: 2;
     }
 
     .timeline-item {
@@ -235,66 +246,62 @@
       padding-left: 28px;
       text-align: left;
       cursor: pointer;
-      user-select: none;
-      z-index: 2;
     }
 
+    /* Event Name Accordion Header */
     .event-name {
       font-family: 'Rozha One', serif;
       color: #726056;
-      font-size: 0.9rem;
-      line-height: 1.25;
+      font-size: 0.88rem;
+      line-height: 1.2;
       transition: color 0.3s ease, font-size 0.3s ease;
     }
 
     .timeline-item.active-event .event-name {
       color: #0f3838;
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       font-weight: 700;
     }
 
-    /* Collapsible Event Details */
+    /* Expandable Event Content */
     .event-details-collapsible {
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease, margin-top 0.3s ease;
+      transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
       margin-top: 0;
     }
 
     .timeline-item.active-event .event-details-collapsible {
-      max-height: 90px;
+      max-height: 80px;
       opacity: 1;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     .event-time {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       color: #926d27;
       font-weight: 600;
-      line-height: 1.3;
     }
 
     .map-link {
       display: inline-block;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       color: #0f3838;
       text-decoration: none;
       font-weight: 600;
-      margin-top: 2px;
+      margin-top: 1px;
       border-bottom: 1px dotted #0f3838;
-      line-height: 1.25;
     }
 
-    /* Host & Blessings Section Styling */
+    /* Card 4 - Blessings & Hosts */
     .blessing-quote {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       font-style: italic;
       color: #4a3c35;
-      line-height: 1.4;
-      padding: 0 4px;
+      line-height: 1.35;
     }
 
     .host-section {
@@ -304,26 +311,25 @@
     .host-title {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.8rem;
-      line-height: 1.2;
+      font-size: 0.78rem;
     }
 
     .host-names {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #0f3838;
-      line-height: 1.3;
     }
 
     .decorative-divider {
       color: #c5a059;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
   </style>
 </head>
 <body>
 
+  <!-- Video Intro Overlay -->
   <div id="intro-overlay">
     <div class="video-container">
       <video id="intro-video" autoplay muted playsinline preload="auto">
@@ -336,6 +342,7 @@
 
   <div class="cards-container">
 
+    <!-- CARD 1: HERO / INVITATION -->
     <div class="wedding-card" id="card-1">
       <div class="card-top-heading">॥ श्री गणेशाय नमः ॥</div>
       <div>
@@ -354,8 +361,10 @@
         <div class="event-date">दिनांक: 02 एवं 03 दिसंबर, 2026</div>
         <div class="event-venue">स्थान: लोनावला एवं खंडाला</div>
       </div>
+      <div class="card-bottom-spacer"></div>
     </div>
 
+    <!-- CARD 2: PROGRAM DAY I (2 Events) -->
     <div class="wedding-card" id="card-2">
       <div class="card-top-heading">॥ मंगल कार्य ॥</div>
       <div class="card-title">कार्यक्रम • प्रथम दिवस</div>
@@ -363,9 +372,9 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day1"></div>
+        <div class="pearl-node" id="pearl-day1" style="top: 2px;"></div>
         
-        <div class="timeline-item active-event" onclick="selectTimelineItem(this, 'pearl-day1')">
+        <div class="timeline-item active-event" data-pearl-pos="2">
           <div class="event-name">गणेश पूजन</div>
           <div class="event-details-collapsible">
             <div class="event-time">अपराह्न 1:00 बजे</div>
@@ -373,7 +382,7 @@
           </div>
         </div>
         
-        <div class="timeline-item" onclick="selectTimelineItem(this, 'pearl-day1')">
+        <div class="timeline-item" data-pearl-pos="42">
           <div class="event-name">मंडप स्थापन</div>
           <div class="event-details-collapsible">
             <div class="event-time">अपराह्न 2:00 बजे</div>
@@ -381,8 +390,11 @@
           </div>
         </div>
       </div>
+
+      <div class="card-bottom-spacer"></div>
     </div>
 
+    <!-- CARD 3: PROGRAM DAY II (3 Events - Equal Scroll Distance Per Transition) -->
     <div class="wedding-card" id="card-3">
       <div class="card-top-heading">॥ शुभ विवाह ॥</div>
       <div class="card-title">कार्यक्रम • द्वितीय दिवस</div>
@@ -390,9 +402,9 @@
       
       <div class="timeline-container">
         <div class="timeline-line"></div>
-        <div class="pearl-node" id="pearl-day2"></div>
+        <div class="pearl-node" id="pearl-day2" style="top: 2px;"></div>
         
-        <div class="timeline-item active-event" onclick="selectTimelineItem(this, 'pearl-day2')">
+        <div class="timeline-item active-event" data-pearl-pos="2">
           <div class="event-name">मामेरा (भात)</div>
           <div class="event-details-collapsible">
             <div class="event-time">प्रातः 11:00 बजे</div>
@@ -400,7 +412,7 @@
           </div>
         </div>
         
-        <div class="timeline-item" onclick="selectTimelineItem(this, 'pearl-day2')">
+        <div class="timeline-item" data-pearl-pos="42">
           <div class="event-name">बारात प्रस्थान</div>
           <div class="event-details-collapsible">
             <div class="event-time">सायं 5:00 बजे</div>
@@ -408,7 +420,7 @@
           </div>
         </div>
 
-        <div class="timeline-item" onclick="selectTimelineItem(this, 'pearl-day2')">
+        <div class="timeline-item" data-pearl-pos="82">
           <div class="event-name">रात्रिभोज एवं विवाह (फेरे)</div>
           <div class="event-details-collapsible">
             <div class="event-time">रात्रि 9:00 बजे से (फेरे देर रात्रि)</div>
@@ -416,8 +428,11 @@
           </div>
         </div>
       </div>
+
+      <div class="card-bottom-spacer"></div>
     </div>
 
+    <!-- CARD 4: BLESSINGS & HOSTS -->
     <div class="wedding-card" id="card-4">
       <div class="card-top-heading">॥ आशीर्वचन ॥</div>
       
@@ -436,12 +451,13 @@
         <div class="host-title">दर्शनाभिलाषी</div>
         <div class="host-names">समस्त शर्मा परिवार</div>
       </div>
+
+      <div class="card-bottom-spacer"></div>
     </div>
 
   </div>
 
   <script>
-    // Dismiss Intro Logic
     const introOverlay = document.getElementById('intro-overlay');
     const introVideo = document.getElementById('intro-video');
 
@@ -459,78 +475,84 @@
       introVideo.addEventListener('error', dismissIntro);
     }
 
-    // Direct Tap / Click Event Selection Logic
-    function selectTimelineItem(itemElem, pearlId) {
-      const container = itemElem.closest('.timeline-container');
-      if (!container) return;
+    function updateScrollItinerary() {
+      const viewportCenter = window.innerHeight / 2;
 
-      const items = container.querySelectorAll('.timeline-item');
-      items.forEach(i => i.classList.remove('active-event'));
-      itemElem.classList.add('active-event');
+      // Process Card 2 (2 events)
+      processCardItinerary('card-2', 'pearl-day1', viewportCenter);
 
-      updatePearlPosition(itemElem, pearlId);
+      // Process Card 3 (3 events - each step requiring an equal dedicated scroll distance)
+      processCardItinerary('card-3', 'pearl-day2', viewportCenter);
     }
 
-    // Dynamic Pearl Node Alignment (No hardcoded jumping)
-    function updatePearlPosition(activeItem, pearlId) {
-      const pearl = document.getElementById(pearlId);
-      if (!pearl || !activeItem) return;
-
-      // Align center of pearl node perfectly with center of active timeline item top title
-      const itemTop = activeItem.offsetTop;
-      const pearlTop = (itemTop + 6) - (pearl.offsetHeight / 2);
-      pearl.style.top = Math.max(2, pearlTop) + 'px';
-    }
-
-    // Scroll Accordion Logic based on Viewport Proximity
-    function updateAccordionOnScroll(cardId, pearlId) {
+    function processCardItinerary(cardId, pearlId, viewportCenter) {
       const card = document.getElementById(cardId);
       const pearl = document.getElementById(pearlId);
       if (!card || !pearl) return;
 
-      const items = card.querySelectorAll('.timeline-item');
-      let closestItem = null;
-      let minDistance = Infinity;
-      const screenCenter = window.innerHeight / 2;
+      const items = Array.from(card.querySelectorAll('.timeline-item'));
+      const cardRect = card.getBoundingClientRect();
 
-      items.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        const itemCenter = rect.top + rect.height / 3;
-        const distance = Math.abs(screenCenter - itemCenter);
+      // Only calculate if the card is actively in view
+      if (cardRect.bottom < 0 || cardRect.top > window.innerHeight) return;
 
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestItem = item;
+      let targetIndex = 0;
+
+      if (items.length === 2) {
+        // Card 2: 2 items simple center split
+        const item1Rect = items[0].getBoundingClientRect();
+        const item1Center = item1Rect.top + item1Rect.height / 2;
+        targetIndex = (viewportCenter > item1Center + 30) ? 1 : 0;
+      } else if (items.length === 3) {
+        // Card 3: Divide card scroll progress into 3 equal dedicated bands
+        // Step 1 -> Step 2 requires 1 full scroll step, Step 2 -> Step 3 requires equal 2nd full scroll step
+        const topThreshold = cardRect.top + (cardRect.height * 0.38);
+        const bottomThreshold = cardRect.top + (cardRect.height * 0.62);
+
+        if (viewportCenter < topThreshold) {
+          targetIndex = 0; // Event 1: Mamera
+        } else if (viewportCenter >= topThreshold && viewportCenter < bottomThreshold) {
+          targetIndex = 1; // Event 2: Baraat
+        } else {
+          targetIndex = 2; // Event 3: Phere
         }
-      });
+      }
 
-      if (closestItem && !closestItem.classList.contains('active-event')) {
-        items.forEach(i => i.classList.remove('active-event'));
-        closestItem.classList.add('active-event');
-        updatePearlPosition(closestItem, pearlId);
+      const activeItem = items[targetIndex];
+      if (activeItem && !activeItem.classList.contains('active-event')) {
+        items.forEach(item => item.classList.remove('active-event'));
+        activeItem.classList.add('active-event');
+
+        const pos = activeItem.getAttribute('data-pearl-pos');
+        if (pos) {
+          pearl.style.top = pos + 'px';
+        }
       }
     }
 
-    // Attach Event Listeners
-    window.addEventListener('scroll', () => {
-      updateAccordionOnScroll('card-2', 'pearl-day1');
-      updateAccordionOnScroll('card-3', 'pearl-day2');
-    }, { passive: true });
+    // High performance scroll binding
+    window.addEventListener('scroll', updateScrollItinerary, { passive: true });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      // Set initial positions on page load
-      const initialDay1 = document.querySelector('#card-2 .timeline-item.active-event');
-      const initialDay2 = document.querySelector('#card-3 .timeline-item.active-event');
-      if (initialDay1) updatePearlPosition(initialDay1, 'pearl-day1');
-      if (initialDay2) updatePearlPosition(initialDay2, 'pearl-day2');
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const card = item.closest('.wedding-card');
+        if (!card) return;
+        
+        const pearlId = card.id === 'card-2' ? 'pearl-day1' : 'pearl-day2';
+        const pearl = document.getElementById(pearlId);
+        
+        card.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active-event'));
+        item.classList.add('active-event');
+
+        if (pearl) {
+          const pos = item.getAttribute('data-pearl-pos');
+          if (pos) pearl.style.top = pos + 'px';
+        }
+      });
     });
 
-    window.addEventListener('resize', () => {
-      const activeDay1 = document.querySelector('#card-2 .timeline-item.active-event');
-      const activeDay2 = document.querySelector('#card-3 .timeline-item.active-event');
-      if (activeDay1) updatePearlPosition(activeDay1, 'pearl-day1');
-      if (activeDay2) updatePearlPosition(activeDay2, 'pearl-day2');
-    });
+    // Initial calculation on load
+    window.addEventListener('load', updateScrollItinerary);
   </script>
 </body>
 </html>
