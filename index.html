@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>शुभ विवाह - सुकृति एवं सिद्धांत</title>
+  <title>शुभ विवाह - सुकृति एवं सिद्धान्त</title>
   
   <!-- Google Fonts for Regal Devanagari Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -122,59 +122,59 @@
       border-radius: 8px;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08);
 
-      /* Adjusted padding to pull content away from frame borders */
-      padding: 28% 16% 8% 16%;
+      /* Inner padding centered inside the frame */
+      padding: 30% 16% 12% 16%;
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       text-align: center;
-      overflow: hidden; /* Prevents overflow outside the card frame */
+      overflow: hidden;
     }
 
     /* Card Content Formatting */
     .card-top-heading {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       letter-spacing: 0.5px;
     }
 
     .card-title {
       font-family: 'Yatra One', cursive;
       color: #0f3838;
-      font-size: 1.2rem;
-      line-height: 1.15;
+      font-size: 1.25rem;
+      line-height: 1.2;
     }
 
     .names-heading {
       font-family: 'Rozha One', serif;
       color: #0f3838;
-      font-size: 1.55rem;
-      line-height: 1.1;
+      font-size: 1.6rem;
+      line-height: 1.15;
     }
 
     .connector-text {
       font-family: 'Noto Serif Devanagari', serif;
       color: #926d27;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
     }
 
     .invitation-quote {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: #3d332e;
-      line-height: 1.3;
-      margin: 1px 0;
+      line-height: 1.35;
+      margin: 2px 0;
     }
 
     .event-details-box {
       width: 100%;
       border-top: 1px solid rgba(197, 160, 89, 0.4);
       border-bottom: 1px solid rgba(197, 160, 89, 0.4);
-      padding: 4px 0;
+      padding: 6px 0;
       background: rgba(255, 255, 255, 0.35);
       border-radius: 4px;
     }
@@ -183,29 +183,20 @@
       font-family: 'Noto Serif Devanagari', serif;
       font-weight: 700;
       color: #0f3838;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
     }
 
     .event-venue {
       font-family: 'Anek Devanagari', sans-serif;
       font-weight: 600;
       color: #52423a;
-      font-size: 0.72rem;
-    }
-
-    .card-bottom-stamp {
-      font-family: 'Rozha One', serif;
-      color: #926d27;
-      font-size: 0.72rem;
-      letter-spacing: 1px;
-      margin-top: auto;
-      padding-top: 4px;
+      font-size: 0.75rem;
     }
 
     /* Accordion Itinerary Styling */
     .program-date-header {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #926d27;
       border-bottom: 1px dashed #c5a059;
@@ -218,8 +209,8 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin: 2px 0;
+      gap: 12px;
+      margin: 4px 0;
     }
 
     .timeline-line {
@@ -246,7 +237,7 @@
 
     .timeline-item {
       position: relative;
-      padding-left: 26px;
+      padding-left: 28px;
       text-align: left;
     }
 
@@ -254,7 +245,7 @@
     .event-name {
       font-family: 'Rozha One', serif;
       color: #726056;
-      font-size: 0.84rem;
+      font-size: 0.88rem;
       line-height: 1.2;
       transition: color 0.4s ease, font-size 0.4s ease;
       cursor: pointer;
@@ -263,7 +254,7 @@
     /* Active State: Highlighted Title */
     .timeline-item.active-event .event-name {
       color: #0f3838;
-      font-size: 0.92rem;
+      font-size: 0.98rem;
       font-weight: 700;
     }
 
@@ -272,26 +263,26 @@
       max-height: 0;
       opacity: 0;
       overflow: hidden;
-      transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, margin-top 0.4s ease-in-out;
+      transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out;
       margin-top: 0;
     }
 
     .timeline-item.active-event .event-details-collapsible {
-      max-height: 65px;
+      max-height: 80px;
       opacity: 1;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .event-time {
       font-family: 'Anek Devanagari', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: #926d27;
       font-weight: 600;
     }
 
     .map-link {
       display: inline-block;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       color: #0f3838;
       text-decoration: none;
       font-weight: 600;
@@ -302,10 +293,10 @@
     /* Host Card */
     .blessing-quote {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-style: italic;
       color: #4a3c35;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     .host-section {
@@ -315,19 +306,19 @@
     .host-title {
       font-family: 'Rozha One', serif;
       color: #926d27;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
     }
 
     .host-names {
       font-family: 'Noto Serif Devanagari', serif;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #0f3838;
     }
 
     .decorative-divider {
       color: #c5a059;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
     }
   </style>
 </head>
@@ -365,7 +356,6 @@
         <div class="event-date">दिनांक: 02 एवं 03 दिसंबर, 2026</div>
         <div class="event-venue">स्थान: लोनावला एवं खंडाला</div>
       </div>
-      <div class="card-bottom-stamp">— S & S —</div>
     </div>
 
     <!-- CARD 2: PROGRAM DAY I -->
@@ -386,7 +376,7 @@
           </div>
         </div>
         
-        <div class="timeline-item" data-pearl-pos="38">
+        <div class="timeline-item" data-pearl-pos="42">
           <div class="event-name">मंडप स्थापन</div>
           <div class="event-details-collapsible">
             <div class="event-time">अपराह्न 2:00 बजे</div>
@@ -394,8 +384,6 @@
           </div>
         </div>
       </div>
-
-      <div class="card-bottom-stamp">— प्रथम दिवस —</div>
     </div>
 
     <!-- CARD 3: PROGRAM DAY II -->
@@ -416,7 +404,7 @@
           </div>
         </div>
         
-        <div class="timeline-item" data-pearl-pos="38">
+        <div class="timeline-item" data-pearl-pos="42">
           <div class="event-name">बारात प्रस्थान</div>
           <div class="event-details-collapsible">
             <div class="event-time">सायं 5:00 बजे</div>
@@ -424,7 +412,7 @@
           </div>
         </div>
 
-        <div class="timeline-item" data-pearl-pos="74">
+        <div class="timeline-item" data-pearl-pos="82">
           <div class="event-name">रात्रिभोज एवं विवाह (फेरे)</div>
           <div class="event-details-collapsible">
             <div class="event-time">रात्रि 9:00 बजे से (फेरे देर रात्रि)</div>
@@ -432,8 +420,6 @@
           </div>
         </div>
       </div>
-
-      <div class="card-bottom-stamp">— द्वितीय दिवस —</div>
     </div>
 
     <!-- CARD 4: BLESSINGS & HOSTS -->
@@ -455,8 +441,6 @@
         <div class="host-title">दर्शनाभिलाषी</div>
         <div class="host-names">समस्त शर्मा परिवार</div>
       </div>
-
-      <div class="card-bottom-stamp">— हार्दिक बधाई —</div>
     </div>
 
   </div>
